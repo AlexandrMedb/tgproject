@@ -1,0 +1,42 @@
+@import "../../styles/colors.scss";
+
+.container {
+  background-color: $bgLight;
+}
+
+.navBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1245px;
+  padding: 16px;
+
+  a {
+    color: $textColor;
+    font-size: 16px;
+    font-weight: lighter;
+
+    &:not(:last-of-type) {
+      margin-right: 24px;
+    }
+
+    &:nth-of-type(3) {
+      padding-right: 24px;
+      border-right: 1px solid #4c6168;
+    }
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+    img {
+      height: 40px;
+    }
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+  }
+}

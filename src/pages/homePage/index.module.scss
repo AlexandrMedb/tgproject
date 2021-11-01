@@ -1,0 +1,50 @@
+@import "../../styles/colors.scss";
+
+.wrapper {
+  background-color: $bgLighter;
+  min-height: 100vh;
+  color: $textColor;
+}
+
+.headerWrapper {
+  background-image: url("./image/loginBg.jpg");
+  background-attachment: fixed;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  header {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 80px 0;
+    display: flex;
+
+    .left {
+      width: 50%;
+      h1 {
+        font-size: 48px;
+        margin-bottom: 32px;
+      }
+    }
+    .right {
+      width: 50%;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  color: $textColor;
+
+  .systemAdv {
+    text-align: center;
+    padding: 80px 32px;
+    img {
+      padding-top: 16px;
+      height: 100px;
+    }
+  }
+}

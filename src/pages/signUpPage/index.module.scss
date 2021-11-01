@@ -1,0 +1,84 @@
+@import "../../styles/colors.scss";
+
+.container {
+  background-image: url(./image/signupBg.jpg);
+  background-size: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 36px;
+  padding-bottom: 18px;
+  h1 {
+    color: $mainColor;
+    font-weight: normal;
+    padding-left: 20px;
+    font-size: 28px;
+  }
+  img {
+    height: 28px;
+  }
+}
+
+.signup {
+  max-width: 926px;
+  margin: 0 auto;
+  padding: 12px;
+  background-color: $bgLight;
+
+  border: 1px solid $bgDark;
+  border-radius: 6px;
+  color: $textColor;
+
+  h2 {
+    color: $mainColor;
+    text-align: center;
+    font-size: 24px;
+    padding: 6px;
+    font-weight: normal;
+  }
+
+  section {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .left {
+    width: 50%;
+    p {
+      text-align: center;
+    }
+    .linkBlock {
+      font-size: 12px;
+      margin-bottom: 12px;
+      p {
+        margin-top: 6px;
+        a {
+          text-decoration: none;
+          color: $mainColor;
+        }
+      }
+    }
+  }
+
+  .right {
+    width: 50%;
+    p {
+      padding-top: 30px;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: lighter;
+
+      &::before {
+        content: '"';
+        font-size: 24px;
+      }
+    }
+  }
+}

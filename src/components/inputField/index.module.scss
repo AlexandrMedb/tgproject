@@ -1,0 +1,31 @@
+@import "../../styles/colors.scss";
+
+.inputFiled {
+  color: $textColor;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: normal;
+  border-bottom: solid 1px $bgDark;
+  box-sizing: border-box;
+
+  input {
+    background-color: $bgDark;
+    border: none;
+    padding: 12px;
+    color: #fff;
+    box-sizing: border-box;
+    width: 100%;
+
+    &:focus {
+      outline: 1px solid $mainColor;
+      border-radius: 2px;
+    }
+  }
+
+  h3 {
+    font-weight: normal;
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+}
