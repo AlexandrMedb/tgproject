@@ -12,7 +12,7 @@ export const MainNavBar = () => {
       <nav className={style.navBar}>
         <div className={style.left}>
           <NavLink to={reduceHomePath()}>
-            <img src="./Owlbear_logo.png" alt="logo" />
+            <img src="./img/Owlbear_logo.png" alt="logo" />
           </NavLink>
           <NavLink to="/gmLanding">Для мастеров</NavLink>
           <NavLink to="/playerLanding">Для игроков</NavLink>

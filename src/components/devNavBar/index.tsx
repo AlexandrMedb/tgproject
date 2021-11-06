@@ -26,6 +26,11 @@ export const DevNavBar = () => {
           login
         </NavLink>
       </li>
+      <li>
+        <NavLink style={{ marginRight: "20px" }} to="/map">
+          Map
+        </NavLink>
+      </li>
     </ul>
   );
 };

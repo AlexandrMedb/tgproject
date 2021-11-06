@@ -41,10 +41,34 @@
 
   .systemAdv {
     text-align: center;
-    padding: 80px 32px;
+    padding: 80px 32px 20px 32px;
     img {
       padding-top: 16px;
       height: 100px;
+    }
+  }
+
+  .usersPages {
+    padding: 80px 32px;
+    display: flex;
+    justify-content: space-between;
+    .text {
+      max-width: 600px;
+      h2 {
+        font-size: 36px;
+      }
+      p {
+        font-size: 24px;
+        margin-bottom: 24px;
+      }
+    }
+
+    .img {
+      max-width: 550px;
+      img {
+        padding-top: 16px;
+        width: 100%;
+      }
     }
   }
 }
