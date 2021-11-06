@@ -1,9 +1,13 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import counterReducer from "../features/counter/counterSlice";
+import mapReducer from "./mapSlice";
+import currentCharactersReducer from "./currentCharactersSlice";
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    map: mapReducer,
+    currentCharacters: currentCharactersReducer,
   },
 });
 
