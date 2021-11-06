@@ -10,9 +10,7 @@ export const MapPage = () => {
   const [cellSize, setCellSize] = useState(34);
   const [cellWidth, setCellWidth] = useState(30);
   const [cellHeight, setCellHeight] = useState(24);
-  const [mapLink, setMapLink] = useState(
-    "https://i.pinimg.com/736x/d0/13/2b/d0132bcbaedd18bedafd82a861a4668a.jpg"
-  );
+  const [mapLink, setMapLink] = useState("./img/testMap.jpg");
   const [mapSize, setMapSize] = useState(1020);
 
   const CreateMapArray = useCallback(() => {
