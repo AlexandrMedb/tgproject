@@ -1,5 +1,6 @@
 .cell {
   box-sizing: border-box;
   border: 1px solid black;
-  cursor: grab;
+  // cursor: default;
+  transition: all 0.3s ease;
 }

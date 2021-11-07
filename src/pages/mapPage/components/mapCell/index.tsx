@@ -1,49 +1,76 @@
 import React, { Dispatch, SetStateAction } from "react";
+import { useAppSelector, useAppDispatch } from "../../../../app/hooks";
+//slicers
+import { selectCellSqureSize } from "../../../../app/mapSlice";
+import {
+  selectCellCurentCharacters,
+  rmCharcter,
+  addCharcter,
+} from "../../../../app/currentCharactersSlice";
 import styles from "./index.module.scss";
 
-import { Cell } from "../../interfaces/cell";
-
-interface ACell extends Cell {
-  setCurrentCell?: Dispatch<SetStateAction<string>>;
-  currenCell?: string;
+interface cell {
+  id: string;
+  currentCell: any;
+  setCurrentCell: Dispatch<SetStateAction<any>>;
 }
 
-export const MapCell = ({ size, npc, setCurrentCell, currenCell }: ACell) => {
+export const MapCell = ({ id, currentCell, setCurrentCell }: cell) => {
+  const dispatch = useAppDispatch();
+
+  const cellSquareSize = useAppSelector(selectCellSqureSize);
+  let pc = "";
+  let drag = false;
+  let cursor = "grap";
+  const character = useAppSelector(selectCellCurentCharacters(id));
+  if (character) {
+    pc = character.name;
+    drag = true;
+    cursor = "grab";
+  }
+
   const dragStartHandler = (e: any) => {
-    // setCurrentCell((currenCell) => currenCell + 1);
-    // e.preventDefault();
-    console.log(2);
+    if (character) {
+      setCurrentCell({ id: id, character: character });
+    }
   };
 
   const dragEndHandler = (e: any) => {
     e.preventDefault();
-    // e.target.style.background = "none";
   };
   const dragOvertHandler = (e: any) => {
-    e.preventDefault();
-
-    e.target.style.background = "rgba(0, 0, 0, 0.5)";
+    if (currentCell) {
+      e.preventDefault();
+      e.target.style.background = "rgba(0, 0, 0, 0.5)";
+      setTimeout(() => {
+        e.target.style.background = "rgba(0, 0, 0, 0.0)";
+      }, 3000);
+    }
   };
   const dropHandler = (e: any) => {
-    e.preventDefault();
-    console.log(e.target);
-    // console.log(currenCell);
-    e.target.style.background = "red";
+    if (currentCell) {
+      e.preventDefault();
+      dispatch(rmCharcter(currentCell.id));
+      dispatch(addCharcter({ ...currentCell, id: id }));
+      setCurrentCell(undefined);
+    }
   };
-
-  let pc = "";
-  if (npc) pc = npc.name;
 
   return (
     <div
-      draggable={true}
+      draggable={drag}
       onDragStart={(e) => dragStartHandler(e)}
       onDragLeave={(e) => dragEndHandler(e)}
       onDragEnd={(e) => dragEndHandler(e)}
       onDragOver={(e) => dragOvertHandler(e)}
       onDrop={(e) => dropHandler(e)}
       className={styles.cell}
-      style={{ width: `${size}px`, height: `${size}px`, color: "blue" }}
+      style={{
+        cursor: cursor,
+        width: `${cellSquareSize}px`,
+        height: `${cellSquareSize}px`,
+        color: "blue",
+      }}
     >
       {pc}
     </div>

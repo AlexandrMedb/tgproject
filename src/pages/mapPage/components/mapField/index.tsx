@@ -1,31 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import { useAppSelector } from "../../../../app/hooks";
+//slicers
+import {
+  selectMaplink,
+  selectMapWidthPx,
+  selectWidthInCels,
+  selectHeightInCels,
+} from "../../../../app/mapSlice";
+
+//components
 import { MapCell } from "../mapCell";
+import { Cell } from "../../interfaces/cell";
 import styles from "./index.module.scss";
 
-import { Cell } from "../../interfaces/cell";
+export const MapField = () => {
+  const [currenCell, setCurrentCell] = useState();
 
-interface mapData {
-  cellSize: number;
-  cellWidth: number;
-  cellHeight?: number;
-  mapLink: string;
-  mapSize: number;
-  mapArray: Array<Array<Cell>>;
-}
+  //map
+  const mapBackground = useAppSelector(selectMaplink);
+  const mapBackgroundWidth = useAppSelector(selectMapWidthPx);
 
-export const MapField = ({
-  cellSize,
-  cellWidth,
-  mapLink,
-  mapSize,
-  mapArray,
-}: mapData) => {
-  const [currenCell, setCurrentCell] = useState("");
+  const cellWidth = useAppSelector(selectWidthInCels);
+  const cellHeight = useAppSelector(selectHeightInCels);
+  //chareacters
+
+  const CreateMapArray = useCallback(() => {
+    let res = new Array(cellHeight).fill([]);
+    let cell: Cell = {
+      size: 0,
+    };
+    res = res.map((el) => new Array(cellWidth).fill(cell));
+
+    return res;
+  }, [cellHeight, cellWidth]);
+
+  const mapArray = CreateMapArray();
 
   return (
     <section className={styles.mapWrapper}>
       <div>
-        <img style={{ width: `${mapSize}px` }} src={mapLink} alt="map" />
+        <img
+          style={{ width: `${mapBackgroundWidth}px` }}
+          src={mapBackground}
+          alt="map"
+        />
       </div>
 
       <div
@@ -33,14 +51,13 @@ export const MapField = ({
         style={{ gridTemplateColumns: `repeat(${cellWidth}, 1fr)` }}
       >
         {mapArray.map((el, i) =>
-          el.map((el, j) => {
+          el.map((el: any, j: number) => {
             return (
               <MapCell
-                key={`${i}_${j}`}
-                size={el.size}
-                npc={el.npc}
+                key={`id${i}_${j}`}
+                id={`id${i}_${j}`}
+                currentCell={currenCell}
                 setCurrentCell={setCurrentCell}
-                currenCell={currenCell}
               />
             );
           })

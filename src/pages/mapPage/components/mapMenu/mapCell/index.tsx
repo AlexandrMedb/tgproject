@@ -1,23 +1,18 @@
 import React from "react";
 import styles from "./index.module.scss";
 
-import { Dispatch, SetStateAction } from "react";
+import { useAppDispatch } from "../../../../../app/hooks";
+//slicer
+import {
+  setMapWidthPX,
+  setCellSqureSize,
+  setHeightInCels,
+  setWidthInCels,
+  setMap,
+} from "../../../../../app/mapSlice";
 
-interface mapSetData {
-  setCellSize: Dispatch<SetStateAction<number>>;
-  setCellWidth: Dispatch<SetStateAction<number>>;
-  setCellHeight: Dispatch<SetStateAction<number>>;
-  setMapLink: Dispatch<SetStateAction<string>>;
-  setMapSize: Dispatch<SetStateAction<number>>;
-}
-
-export const MapMenu = ({
-  setCellSize,
-  setCellWidth,
-  setCellHeight,
-  setMapLink,
-  setMapSize,
-}: mapSetData) => {
+export const MapMenu = () => {
+  const dispatch = useAppDispatch();
   const handleClick = (e: any) => {
     console.dir(e.target.parentNode);
   };
@@ -28,7 +23,7 @@ export const MapMenu = ({
         <p>Ссылка на карту</p>
         <input
           onChange={(e) => {
-            setMapLink(e.target.value);
+            dispatch(setMap(e.target.value));
           }}
           name="mapLink"
           type="text"
@@ -37,9 +32,7 @@ export const MapMenu = ({
       <div>
         <p>Размер карты в px</p>
         <input
-          onChange={(e) => {
-            setMapSize(+e.target.value);
-          }}
+          onChange={(e) => dispatch(setMapWidthPX(+e.target.value))}
           name="mapLink"
           type="number"
         />
@@ -47,15 +40,7 @@ export const MapMenu = ({
       <div>
         <p>ширина карты в клетках</p>
         <input
-          onChange={(e) => {
-            let res = Math.floor(+e.target.value);
-
-            if (res < 1) {
-              setCellWidth(1);
-            } else {
-              setCellWidth(res);
-            }
-          }}
+          onChange={(e) => dispatch(setWidthInCels(+e.target.value))}
           name="mapLink"
           type="number"
         />
@@ -63,9 +48,7 @@ export const MapMenu = ({
       <div>
         <p>Высота карты в клетках</p>
         <input
-          onChange={(e) => {
-            setCellHeight(+e.target.value);
-          }}
+          onChange={(e) => dispatch(setHeightInCels(+e.target.value))}
           name="mapLink"
           type="number"
         />
@@ -73,14 +56,7 @@ export const MapMenu = ({
       <div>
         <p>Размер клетки в PX</p>
         <input
-          onChange={(e) => {
-            let res = +e.target.value;
-            if (res < 1) {
-              setCellSize(1);
-            } else {
-              setCellSize(res);
-            }
-          }}
+          onChange={(e) => dispatch(setCellSqureSize(+e.target.value))}
           name="mapLink"
           type="number"
         />

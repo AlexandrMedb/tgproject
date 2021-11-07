@@ -9,6 +9,7 @@ export const store = configureStore({
     map: mapReducer,
     currentCharacters: currentCharactersReducer,
   },
+  devTools: true,
 });
 
 export type AppDispatch = typeof store.dispatch;

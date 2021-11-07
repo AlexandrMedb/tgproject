@@ -15,25 +15,61 @@ export interface character {
   };
 }
 
+export interface characterDis {
+  id: string;
+  character: character;
+}
+
 export interface currentCharcters {
   [key: string]: character;
 }
 
-const initialState: currentCharcters = {};
+const initialState: currentCharcters = {
+  id0_0: {
+    characterId: "1a",
+    name: "gnol",
+  },
+  id1_0: {
+    characterId: "1a",
+    name: "elf",
+  },
+  id5_5: {
+    characterId: "1a",
+    name: "gnom",
+  },
+  id23_3: {
+    characterId: "1a",
+    name: "solder",
+  },
+};
 
 export const currentCharctersSlice = createSlice({
   name: "currentCharcters",
   initialState,
   reducers: {
-    addCharcter: (state, action: PayloadAction<character>) => {
-      state[action.payload.characterId] = action.payload;
+    addCharcter: (state, action: PayloadAction<characterDis>) => {
+      state[action.payload.id] = action.payload.character;
     },
+    rmCharcter: (state, action: PayloadAction<string>) => {
+      delete state[action.payload];
+    },
+
+    // mvCharcter: (state, action: PayloadAction<string>) => {
+    //   state[action.payload] = {
+    //     characterId: "1a",
+    //     name: "solder",
+    //   };
+    // },
   },
 });
 
-export const { addCharcter } = currentCharctersSlice.actions;
+export const { addCharcter, rmCharcter } = currentCharctersSlice.actions;
 
 export const selectAllCurentCharacters = (state: RootState) =>
   state.currentCharacters;
+
+export const selectCellCurentCharacters =
+  (position: string) => (state: RootState) =>
+    state.currentCharacters[position];
 
 export default currentCharctersSlice.reducer;
