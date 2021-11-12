@@ -1,5 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { signUp } from "../../services/firebase";
 
 import styles from "./index.module.scss";
 
@@ -9,6 +10,32 @@ import { ImpButton } from "../../components/impButton";
 export const SignUpPage = () => {
   const handleClick = () => {
     console.log("hello");
+  };
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const { push } = useHistory();
+
+  const handlePassChange = (e: any) => {
+    setPassword(e.target.value);
+  };
+
+  const handleEmailChange = (e: any) => {
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      await signUp(email, password);
+      push("/profile");
+    } catch (error) {
+      // setError(error.message);
+    }
   };
 
   return (
@@ -21,7 +48,10 @@ export const SignUpPage = () => {
         <h2>Virtual Table</h2>
         <section>
           <div className={styles.left}>
-            <form action="">
+            <form onSubmit={handleSubmit}>
+              <input type="email" onChange={handleEmailChange} />
+              <input type="password" onChange={handlePassChange} />
+              <button type="submit">тест</button>
               <InputFiled type="text" title="username" />
               <InputFiled type="email" title="email" />
               <InputFiled type="password" title="password" />

@@ -13,15 +13,24 @@ interface cell {
   id: string;
   currentCell: any;
   setCurrentCell: Dispatch<SetStateAction<any>>;
+  wayLength: number;
+  setWayLength: Dispatch<SetStateAction<number>>;
 }
 
-export const MapCell = ({ id, currentCell, setCurrentCell }: cell) => {
+export const MapCell = ({
+  id,
+  currentCell,
+  setCurrentCell,
+  wayLength,
+  setWayLength,
+}: cell) => {
   const dispatch = useAppDispatch();
 
   const cellSquareSize = useAppSelector(selectCellSqureSize);
   let pc = "";
   let drag = false;
   let cursor = "grap";
+  let cellCost = 5; //ft
   const character = useAppSelector(selectCellCurentCharacters(id));
   if (character) {
     pc = character.name;
@@ -32,34 +41,51 @@ export const MapCell = ({ id, currentCell, setCurrentCell }: cell) => {
   const dragStartHandler = (e: any) => {
     if (character) {
       setCurrentCell({ id: id, character: character });
+      setWayLength(0);
+    }
+  };
+
+  const dragEnterHandler = (e: any) => {
+    if (currentCell) {
+      e.target.style.background = "rgba(0, 0, 0, 0.5)";
     }
   };
 
   const dragEndHandler = (e: any) => {
     e.preventDefault();
+    if (currentCell) {
+      if (character && id !== currentCell.id) cellCost *= 2;
+      setWayLength(wayLength + cellCost);
+    }
+
+    setTimeout(() => {
+      e.target.style.background = "rgba(0, 0, 0, 0.0)";
+    }, 3000);
   };
   const dragOvertHandler = (e: any) => {
-    if (currentCell) {
-      e.preventDefault();
-      e.target.style.background = "rgba(0, 0, 0, 0.5)";
-      setTimeout(() => {
-        e.target.style.background = "rgba(0, 0, 0, 0.0)";
-      }, 3000);
-    }
+    e.preventDefault();
+    // if (currentCell) {
+    //   e.target.style.background = "rgba(0, 0, 0, 0.5)";
+    // }
   };
   const dropHandler = (e: any) => {
-    if (currentCell) {
-      e.preventDefault();
-      dispatch(rmCharcter(currentCell.id));
-      dispatch(addCharcter({ ...currentCell, id: id }));
-      setCurrentCell(undefined);
+    e.preventDefault();
+    setWayLength(0);
+    if (!character) {
+      if (currentCell) {
+        dispatch(rmCharcter(currentCell.id));
+        dispatch(addCharcter({ ...currentCell, id: id }));
+        setCurrentCell(undefined);
+      }
     }
+    e.target.style.background = "rgba(0, 0, 0, 0.0)";
   };
 
   return (
     <div
       draggable={drag}
       onDragStart={(e) => dragStartHandler(e)}
+      onDragEnter={(e) => dragEnterHandler(e)}
       onDragLeave={(e) => dragEndHandler(e)}
       onDragEnd={(e) => dragEndHandler(e)}
       onDragOver={(e) => dragOvertHandler(e)}

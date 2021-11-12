@@ -15,6 +15,7 @@ import styles from "./index.module.scss";
 
 export const MapField = () => {
   const [currenCell, setCurrentCell] = useState();
+  const [wayLength, setWayLength] = useState(0);
 
   //map
   const mapBackground = useAppSelector(selectMaplink);
@@ -37,32 +38,37 @@ export const MapField = () => {
   const mapArray = CreateMapArray();
 
   return (
-    <section className={styles.mapWrapper}>
-      <div>
-        <img
-          style={{ width: `${mapBackgroundWidth}px` }}
-          src={mapBackground}
-          alt="map"
-        />
-      </div>
+    <div>
+      <div>wayLength {wayLength}</div>
+      <section className={styles.mapWrapper}>
+        <div>
+          <img
+            style={{ width: `${mapBackgroundWidth}px` }}
+            src={mapBackground}
+            alt="map"
+          />
+        </div>
 
-      <div
-        className={styles.mapField}
-        style={{ gridTemplateColumns: `repeat(${cellWidth}, 1fr)` }}
-      >
-        {mapArray.map((el, i) =>
-          el.map((el: any, j: number) => {
-            return (
-              <MapCell
-                key={`id${i}_${j}`}
-                id={`id${i}_${j}`}
-                currentCell={currenCell}
-                setCurrentCell={setCurrentCell}
-              />
-            );
-          })
-        )}
-      </div>
-    </section>
+        <div
+          className={styles.mapField}
+          style={{ gridTemplateColumns: `repeat(${cellWidth}, 1fr)` }}
+        >
+          {mapArray.map((el, i) =>
+            el.map((el: any, j: number) => {
+              return (
+                <MapCell
+                  key={`id${i}_${j}`}
+                  id={`id${i}_${j}`}
+                  currentCell={currenCell}
+                  setCurrentCell={setCurrentCell}
+                  wayLength={wayLength}
+                  setWayLength={setWayLength}
+                />
+              );
+            })
+          )}
+        </div>
+      </section>
+    </div>
   );
 };

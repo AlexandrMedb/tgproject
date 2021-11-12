@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { signIn } from "../../services/firebase";
 
 import styles from "./index.module.scss";
 
@@ -10,6 +11,32 @@ import { ImpButton } from "../../components/impButton";
 export const LoginPage = () => {
   const handleClick = () => {
     console.log("hello");
+  };
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const { push } = useHistory();
+
+  const handlePassChange = (e: any) => {
+    setPassword(e.target.value);
+  };
+
+  const handleEmailChange = (e: any) => {
+    setEmail(e.target.value);
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      await signIn(email, password);
+      push("/map");
+    } catch (error) {
+      // setError(error.message);
+    }
   };
 
   return (
@@ -22,7 +49,10 @@ export const LoginPage = () => {
         <h2>Wlcome Back</h2>
         <section>
           <div className={styles.left}>
-            <form action="">
+            <form onSubmit={handleSubmit}>
+              <input type="email" onChange={handleEmailChange} />
+              <input type="password" onChange={handlePassChange} />
+              <button type="submit">тест</button>
               <InputFiled type="email" title="email" />
               <InputFiled type="password" title="password" />
               <ImpButton text="Вернуться к приключению" event={handleClick} />

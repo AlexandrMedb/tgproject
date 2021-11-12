@@ -6,7 +6,7 @@ export interface character {
   characterId: string;
   name: string;
   stats?: {
-    hp: number;
+    hp?: number;
     speed: number;
   };
   loot?: {
