@@ -6,7 +6,7 @@ import {
   selectCellCurentCharacters,
   rmCharcter,
   addCharcter,
-} from "../../../../app/currentCharactersSlice";
+} from "../../../../app/mapCurrentCharactersSlice";
 import styles from "./index.module.scss";
 
 interface cell {

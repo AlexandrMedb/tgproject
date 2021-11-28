@@ -1,44 +1,71 @@
 import React, { useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
+import { Link } from "react-router-dom";
+import styles from "./index.module.scss";
+
+// import { updateProfile, reload } from "firebase/auth";
 import { leave, auth } from "../../services/firebase";
+// import { getDatabase, ref, set, update, onValue } from "firebase/database";
 
 export const ProfilePage = () => {
-  const [a, setA] = useState();
-  const user = auth.currentUser;
+  // const [data, setData] = useState();
+  const [currentUser, setCurrentUser] = useState();
 
-  let displayName;
-  let email;
-  let photoURL;
-  let emailVerified;
+  // function writeUserData(userId) {
+  //   const db = getDatabase();
+  //   update(ref(db, "profile/" + userId), {
+  //     username: "sa",
+  //     email: "trw@mail.ru",
+  //   });
+  // }
 
   useEffect(() => {
-    if (user !== null) {
-      let displayName = user.displayName;
-      let email = user.email;
-      let photoURL = user.photoURL;
-      let emailVerified = user.emailVerified;
-      setA(user.photoURL);
-      // The user's ID, unique to the Firebase project. Do NOT use
-      // this value to authenticate with your backend server, if
-      // you have one. Use User.getToken() instead.
-      const uid = user.uid;
-    }
-  }, [user]);
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        setCurrentUser(undefined);
+      }
+    });
+  }, []);
 
-  // onAuthStateChanged(auth, (user) => {
-  //   if (user) {
-  //     // User is signed in, see docs for a list of available properties
-  //     // https://firebase.google.com/docs/reference/js/firebase.User
-  //     if (user.email) {
-  //       setA(user.email);
-  //     }
-  //     console.log(user);
-  //     // ...
-  //   } else {
-  //     // User is signed out
-  //     // ...
-  //   }
-  // });
+  if (currentUser) {
+    const user = currentUser;
+    console.log(user.uid);
+    return (
+      <div>
+        <main className={styles.wrapper}>
+          <header className={styles.header}>
+            <div className={styles.left}>
+              <div className={styles.img}>
+                <img src={user.photoURL} alt="userImg" />
+              </div>
 
-  return <h1>{a}</h1>;
+              <h3> {user.displayName}</h3>
+            </div>
+
+            <button onClick={() => leave()}>выйти</button>
+          </header>
+          <section className={styles.userContentWraper}>
+            <div className={styles.userContent}>
+              <h2>Герои</h2>
+              <Link
+                style={{ marginRight: "20px" }}
+                to={`/characterCreatePage/${user.uid}`}
+              >
+                Создать нового персонажа
+              </Link>
+            </div>
+            <div className={styles.userContent}>
+              <h1>Приключения</h1>
+            </div>
+            <div className={styles.userContent}>
+              <h1>Карты</h1>
+            </div>
+          </section>
+        </main>
+      </div>
+    );
+  }
+
+  return <h1>Профиль не найден</h1>;
 };

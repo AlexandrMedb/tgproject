@@ -10,6 +10,7 @@ import { SignUpPage } from "../pages/signUpPage";
 import { LoginPage } from "../pages/loginPage";
 import { MapPage } from "../pages/mapPage";
 import { ProfilePage } from "../pages/profilePage";
+import { CharacterCreatePage } from "../pages/charcterCreatePage";
 
 export const useRoutes = () => {
   // const rootRef = db.ref("Atarasov");
@@ -21,6 +22,11 @@ export const useRoutes = () => {
       <Route exact path="/login" component={LoginPage} />
       <Route exact path="/map" component={MapPage} />
       <Route exact path="/profile" component={ProfilePage} />
+      <Route
+        exact
+        path="/characterCreatePage/:chatId"
+        component={CharacterCreatePage}
+      />
       <Redirect to={reduceHomePath()} />
     </Switch>
   );

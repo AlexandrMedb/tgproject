@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import React from "react";
+import { updateProfile } from "firebase/auth";
+import { auth } from "../../services/firebase";
 import { signUp } from "../../services/firebase";
+import { Link, useHistory } from "react-router-dom";
 
 import styles from "./index.module.scss";
 
@@ -8,30 +10,19 @@ import { InputFiled } from "../../components/inputField";
 import { ImpButton } from "../../components/impButton";
 
 export const SignUpPage = () => {
-  const handleClick = () => {
-    console.log("hello");
-  };
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-
   const { push } = useHistory();
-
-  const handlePassChange = (e: any) => {
-    setPassword(e.target.value);
-  };
-
-  const handleEmailChange = (e: any) => {
-    setEmail(e.target.value);
-  };
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setError("");
-
     try {
-      await signUp(email, password);
+      await signUp(e.target.email.value, e.target.password.value);
+      if (auth.currentUser) {
+        updateProfile(auth.currentUser, {
+          displayName: e.target.name.value,
+          photoURL:
+            "https://static8.depositphotos.com/1207999/1027/i/600/depositphotos_10275300-stock-photo-business-man-avatar-profile.jpg",
+        });
+      }
       push("/profile");
     } catch (error) {
       // setError(error.message);
@@ -49,13 +40,10 @@ export const SignUpPage = () => {
         <section>
           <div className={styles.left}>
             <form onSubmit={handleSubmit}>
-              <input type="email" onChange={handleEmailChange} />
-              <input type="password" onChange={handlePassChange} />
-              <button type="submit">тест</button>
-              <InputFiled type="text" title="username" />
-              <InputFiled type="email" title="email" />
-              <InputFiled type="password" title="password" />
-              <ImpButton text="Начать приключение" event={handleClick} />
+              <InputFiled name="name" type="text" title="username" />
+              <InputFiled name="email" type="email" title="email" />
+              <InputFiled name="password" type="password" title="password" />
+              <ImpButton text="Начать приключение" />
               <div className={styles.linkBlock}>
                 <p>
                   <span>Already have an account? </span>

@@ -1,0 +1,16 @@
+@import "../../styles/colors.scss";
+
+.wrapper {
+  margin: 0 auto;
+  display: flex;
+  min-height: 150vh;
+  // justify-content: space-between;
+  // max-width: 1160px;
+
+  background-repeat: no-repeat;
+  background-position: center;
+
+  .left {
+    margin-right: 50px;
+  }
+}

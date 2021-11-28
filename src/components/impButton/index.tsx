@@ -4,15 +4,14 @@ import styles from "./index.module.scss";
 
 export interface button {
   text: string;
-  event(): void;
+  event?(): void;
+  type?: "submit" | "button" | "reset";
 }
 
-export const ImpButton = ({ text, event }: button) => {
+export const ImpButton = ({ text, event, type = "submit" }: button) => {
   return (
     <div className={styles.impButton}>
-      <button type="button" onClick={() => event()}>
-        {text}
-      </button>
+      <button type={type}>{text}</button>
     </div>
   );
 };

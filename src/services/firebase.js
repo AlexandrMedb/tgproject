@@ -5,10 +5,10 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
-  onAuthStateChanged,
+  // onAuthStateChanged,
 } from "firebase/auth";
-import { getFirestore, collection, getDocs } from "firebase/firestore/lite";
-import { getDatabase, ref, set } from "firebase/database";
+
+import { getDatabase, ref, update } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -25,12 +25,12 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-// const database = getDatabase(app);
+const database = getDatabase(app);
 
 // Initialize Firebase
 export function writeUserData(userId) {
-  const db = getDatabase();
-  set(ref(db, "users/" + userId), {
+  const db = database;
+  update(ref(db, "users/" + userId), {
     username: "sa",
     email: "trw@mail.ru",
   });
