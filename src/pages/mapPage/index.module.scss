@@ -1,4 +1,8 @@
+@import "../../styles/colors.scss";
+
 .wrapper {
   display: flex;
-  justify-content: space-between;
+  //justify-content: ;
+  background: $bgDark;
+  min-height: 100vh;
 }

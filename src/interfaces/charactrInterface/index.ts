@@ -1,10 +1,5 @@
 import { characterBackgroundType } from "./types/characterBackgroundType";
-import {
-  statBonusType,
-  alignmentType,
-  lvType,
-  skilType,
-} from "./types/otherTypes";
+import { alignmentType, skilType } from "./types/otherTypes";
 
 import {
   characterClassType,
@@ -12,25 +7,26 @@ import {
 } from "./types/characterClassAndRaceType";
 
 export interface characterInterface {
-  owner: "gm" | string; //playerID
-  characterId?: string;
+  ownerId: "gm" | string; //playerID
+  ownerName: string;
+  characterId: string;
   name: string;
   class: characterClassType;
   race: characterRaceType;
   background: characterBackgroundType;
   alignment: alignmentType;
   experiencePoints: number;
-  lv: lvType;
+  lv: number;
   profinciency: number;
   hitPoints: number;
   speed: number;
   stats: {
-    strength: statBonusType;
-    dexteruty: statBonusType;
-    constitusion: statBonusType;
-    itellegence: statBonusType;
-    wisdom: statBonusType;
-    charisma: statBonusType;
+    strength: number;
+    dexteruty: number;
+    constitusion: number;
+    itellegence: number;
+    wisdom: number;
+    charisma: number;
   };
   skils: {
     acrobatics: skilType;

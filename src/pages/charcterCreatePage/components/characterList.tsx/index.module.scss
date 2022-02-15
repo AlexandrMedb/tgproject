@@ -1,8 +1,42 @@
-@import "../../styles/colors.scss";
+@import "styles/colors.scss";
 
 .character {
   background-image: url("./img/back.jpg");
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
-  // width: ;
+
+  width: clamp(750px, 1000px, 1100px);
+
+  .charHeader {
+    padding-top: 100px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .charName {
+      margin: 0 auto;
+    }
+
+    .charHeaderRight {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+
+      .charClassAndLv {
+        display: flex;
+      }
+    }
+  }
+
+  .characterMain {
+    display: flex;
+    justify-content: space-between;
+
+    .left {
+      display: flex;
+      justify-content: space-between;
+      width: 400px;
+    }
+  }
 }

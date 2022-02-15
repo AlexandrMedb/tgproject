@@ -53,13 +53,6 @@ export const currentCharctersSlice = createSlice({
     rmCharcter: (state, action: PayloadAction<string>) => {
       delete state[action.payload];
     },
-
-    // mvCharcter: (state, action: PayloadAction<string>) => {
-    //   state[action.payload] = {
-    //     characterId: "1a",
-    //     name: "solder",
-    //   };
-    // },
   },
 });
 

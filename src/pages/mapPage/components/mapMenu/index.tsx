@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./index.module.scss";
 
-import { useAppDispatch } from "../../../../../app/hooks";
+import { useAppDispatch } from "../../../../app/hooks";
 //slicer
 import {
   setMapWidthPX,
@@ -9,19 +9,18 @@ import {
   setHeightInCels,
   setWidthInCels,
   setMap,
-} from "../../../../../app/mapSlice";
+} from "../../../../app/mapSlice";
 
 export const MapMenu = () => {
   const dispatch = useAppDispatch();
-  const handleClick = (e: any) => {
-    console.dir(e.target.parentNode);
-  };
+  // const handleClick = (e: any) => {
+  // };
 
   return (
-    <form className={styles.form} action="">
+    <div     className={styles.form} >
       <div>
         <p>Ссылка на карту</p>
-        <input
+         <input
           onChange={(e) => {
             dispatch(setMap(e.target.value));
           }}
@@ -61,9 +60,9 @@ export const MapMenu = () => {
           type="number"
         />
       </div>
-      <button type="button" onClick={(e) => handleClick(e)}>
+      <button type="button" >
         Сохранить
       </button>
-    </form>
+    </div>
   );
 };

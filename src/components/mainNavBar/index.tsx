@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import style from "./index.module.scss";
 
-import { reduceHomePath } from "../../route/pathReducers";
+import { reduceHomePath } from "../../routes/pathReducers";
 
 import { ImpLink } from "../impLink";
 

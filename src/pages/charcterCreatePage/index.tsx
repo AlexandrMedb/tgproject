@@ -5,8 +5,6 @@ import { selectCurentCharacter } from "../../app/currentCharacterSlice";
 
 import { CharacterList } from "./components/characterList.tsx";
 
-import { characterInterface } from "../../interfaces/charactrInterface";
-
 import styles from "./index.module.scss";
 
 import {
@@ -22,8 +20,6 @@ export const CharacterCreatePage = () => {
   const dispatch = useAppDispatch();
 
   const char = useAppSelector(selectCurentCharacter);
-  console.log(char);
-  if (char) console.log("dsa");
 
   const [characterList, setCharacterList] = useState({});
   const [currentCharacter, setCurrentCharacter] = useState("");
