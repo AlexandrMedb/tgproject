@@ -26,25 +26,25 @@ export const mapSlice = createSlice({
       state.maplink = action.payload;
     },
     setMapWidthPX: (state, action: PayloadAction<number>) => {
-      let newData = action.payload;
+      const newData = action.payload;
       if (newData > 100) {
         state.mapWidthPx = Math.floor(newData);
       }
     },
     setCellSqureSize: (state, action: PayloadAction<number>) => {
-      let newData = action.payload;
+      const newData = action.payload;
       if (newData > 10) {
         state.cellsqureSize = Math.floor(newData);
       }
     },
     setWidthInCels: (state, action: PayloadAction<number>) => {
-      let newData = action.payload;
+      const newData = action.payload;
       if (newData > 1) {
         state.widthInCels = Math.floor(newData);
       }
     },
     setHeightInCels: (state, action: PayloadAction<number>) => {
-      let newData = action.payload;
+      const newData = action.payload;
       if (newData > 1) {
         state.heightInCels = Math.floor(newData);
       }

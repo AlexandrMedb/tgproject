@@ -139,8 +139,8 @@ export const CharacterCreatePage = () => {
   onValue(starCountRef, (snapshot) => {
     if (snapshot.val()) {
       data = snapshot.val();
-      let newKeys = Object.keys(data);
-      let currentKeys = Object.keys(characterList);
+      const newKeys = Object.keys(data);
+      const currentKeys = Object.keys(characterList);
       if (newKeys.length !== currentKeys.length) {
         setCharacterList(data);
       }

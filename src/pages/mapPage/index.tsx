@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./index.module.scss";
 //components
 import { MapField } from "./components/mapField";
-import { MapMenu } from "./components/mapMenu";
+import { MapMenu } from './components/mapMenu';
 
 export const MapPage = () => {
   return (
@@ -10,9 +10,8 @@ export const MapPage = () => {
       <section>
         <MapMenu />
       </section>
-
-      <section >
-        <MapField />
+        <section >
+            <MapField />
       </section>
 
       {/*<section>chat</section>*/}

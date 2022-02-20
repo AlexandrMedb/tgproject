@@ -10,11 +10,13 @@ import {
   setWidthInCels,
   setMap,
 } from "../../../../app/mapSlice";
+import {mapSizeCounter} from 'utils/mapSizeCounter/mapSizeCouner'
 
 export const MapMenu = () => {
   const dispatch = useAppDispatch();
-  // const handleClick = (e: any) => {
-  // };
+  console.log(mapSizeCounter());
+
+
 
   return (
     <div     className={styles.form} >

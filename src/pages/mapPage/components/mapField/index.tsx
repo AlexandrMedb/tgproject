@@ -27,7 +27,7 @@ export const MapField = () => {
 
   const CreateMapArray = useCallback(() => {
     let res = new Array(cellHeight).fill([]);
-    let cell: Cell = {
+    const cell: Cell = {
       size: 0,
     };
     res = res.map((el) => new Array(cellWidth).fill(cell));
