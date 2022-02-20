@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../app/hooks";
 import { selectCurentCharacter } from "../../app/currentCharacterSlice";
 
-import { CharacterList } from "./components/characterList.tsx";
+import { CharacterList } from "./components/characterList";
 
 import styles from "./index.module.scss";
 
