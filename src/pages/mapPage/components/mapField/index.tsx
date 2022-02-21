@@ -1,74 +1,79 @@
-import React, { useState, useCallback } from "react";
-import { useAppSelector } from "../../../../app/hooks";
-//slicers
-import {
-  selectMaplink,
-  selectMapWidthPx,
-  selectWidthInCels,
-  selectHeightInCels,
-} from "../../../../app/mapSlice";
+import React, {useState, useCallback} from "react";
 
 //components
-import { MapCell } from "../mapCell";
-import { Cell } from "../../interfaces/cell";
+import {MapCell} from "../mapCell";
+import {Cell} from "../../interfaces/cell";
 import styles from "./index.module.scss";
+import {connect} from "react-redux";
 
-export const MapField = () => {
-  const [currenCell, setCurrentCell] = useState();
-  const [wayLength, setWayLength] = useState(0);
 
-  //map
-  const mapBackground = useAppSelector(selectMaplink);
-  const mapBackgroundWidth = useAppSelector(selectMapWidthPx);
+function mapStateToProps(state: any) {
+    const {map} = state
+    return {map}
+}
 
-  const cellWidth = useAppSelector(selectWidthInCels);
-  const cellHeight = useAppSelector(selectHeightInCels);
-  //chareacters
+export const MapField = connect(mapStateToProps)((props: any) => {
 
-  const CreateMapArray = useCallback(() => {
-    let res = new Array(cellHeight).fill([]);
-    const cell: Cell = {
-      size: 0,
-    };
-    res = res.map((el) => new Array(cellWidth).fill(cell));
+    const {map} = props;
+    console.log(map);
+    const [currenCell, setCurrentCell] = useState();
+    const [wayLength, setWayLength] = useState(0);
 
-    return res;
-  }, [cellHeight, cellWidth]);
+    const {
+        mapLink: mapBackground,
+        mapWidthPx: mapBackgroundWidth,
+        widthInCells: cellWidth,
+        heightInCells: cellHeight
+    } = map;
 
-  const mapArray = CreateMapArray();
 
-  return (
-    <div>
-      <div>wayLength {wayLength}</div>
-      <section className={styles.mapWrapper}>
+    //chareacters
+
+    const CreateMapArray = useCallback(() => {
+        let res = new Array(cellHeight).fill([]);
+        const cell: Cell = {
+            size: 0,
+        };
+        res = res.map((el) => new Array(cellWidth).fill(cell));
+
+        return res;
+    }, [cellHeight, cellWidth]);
+
+    const mapArray = CreateMapArray();
+
+    return (
         <div>
-          <img
-            style={{ width: `${mapBackgroundWidth}px` }}
-            src={mapBackground}
-            alt="map"
-          />
-        </div>
+            <div>wayLength {wayLength}</div>
+            <section className={styles.mapWrapper}>
+                <div>
+                    <img
+                        style={{width: `${mapBackgroundWidth}px`}}
+                        src={mapBackground}
+                        alt="map"
+                    />
+                </div>
 
-        <div
-          className={styles.mapField}
-          style={{ gridTemplateColumns: `repeat(${cellWidth}, 1fr)` }}
-        >
-          {mapArray.map((el, i) =>
-            el.map((el: any, j: number) => {
-              return (
-                <MapCell
-                  key={`id${i}_${j}`}
-                  id={`id${i}_${j}`}
-                  currentCell={currenCell}
-                  setCurrentCell={setCurrentCell}
-                  wayLength={wayLength}
-                  setWayLength={setWayLength}
-                />
-              );
-            })
-          )}
+                <div
+                    className={styles.mapField}
+                    style={{gridTemplateColumns: `repeat(${cellWidth}, 1fr)`}}
+                >
+                    {mapArray.map((el, i) =>
+                        el.map((el: any, j: number) => {
+                            return (
+                                <MapCell
+                                    key={`id${i}_${j}`}
+                                    id={`id${i}_${j}`}
+                                    currentCell={currenCell}
+                                    setCurrentCell={setCurrentCell}
+                                    wayLength={wayLength}
+                                    setWayLength={setWayLength}
+                                />
+                            );
+                        })
+                    )}
+                </div>
+            </section>
         </div>
-      </section>
-    </div>
-  );
-};
+    );
+})
+

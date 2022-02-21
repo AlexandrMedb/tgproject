@@ -1,20 +1,20 @@
 import React from "react";
 import styles from "./index.module.scss";
 
-import { useAppDispatch } from "../../../../app/hooks";
+import { useAppDispatch } from "store/hooks";
 //slicer
 import {
-  setMapWidthPX,
-  setCellSqureSize,
-  setHeightInCels,
-  setWidthInCels,
-  setMap,
-} from "../../../../app/mapSlice";
-import {mapSizeCounter} from 'utils/mapSizeCounter/mapSizeCouner'
+    setMap,
+    setMapWidthPX,
+    setCellSquareSize,
+    setWidthInCells,
+    setHeightInCells,
+} from "features/mapSlice";
+
 
 export const MapMenu = () => {
   const dispatch = useAppDispatch();
-  console.log(mapSizeCounter());
+
 
 
 
@@ -41,7 +41,7 @@ export const MapMenu = () => {
       <div>
         <p>ширина карты в клетках</p>
         <input
-          onChange={(e) => dispatch(setWidthInCels(+e.target.value))}
+          onChange={(e) => dispatch(setWidthInCells(+e.target.value))}
           name="mapLink"
           type="number"
         />
@@ -49,7 +49,7 @@ export const MapMenu = () => {
       <div>
         <p>Высота карты в клетках</p>
         <input
-          onChange={(e) => dispatch(setHeightInCels(+e.target.value))}
+          onChange={(e) => dispatch(setHeightInCells(+e.target.value))}
           name="mapLink"
           type="number"
         />
@@ -57,7 +57,7 @@ export const MapMenu = () => {
       <div>
         <p>Размер клетки в PX</p>
         <input
-          onChange={(e) => dispatch(setCellSqureSize(+e.target.value))}
+          onChange={(e) => dispatch(setCellSquareSize(+e.target.value))}
           name="mapLink"
           type="number"
         />

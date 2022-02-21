@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./index.module.scss";
 //components
-import { MapField } from "./components/mapField";
+import { MapField} from "./components/mapField";
 import { MapMenu } from './components/mapMenu';
 
 export const MapPage = () => {

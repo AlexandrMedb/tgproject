@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../../app/hooks";
-import { selectCurentCharacter } from "../../app/currentCharacterSlice";
+import { useAppSelector, useAppDispatch } from "store/hooks";
+import { selectCurentCharacter } from "features/curentCharapterSlice";
 
 import { CharacterList } from "./components/characterList";
 
