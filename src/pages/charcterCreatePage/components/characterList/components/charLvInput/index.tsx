@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, ChangeEvent } from "react";
+import React, { Dispatch, SetStateAction, ChangeEvent } from "react";
 import styles from "./index.module.scss";
 
 import { experiencePointsLv } from "data/ruleLvData";
@@ -14,7 +14,7 @@ export const CharLvInput = ({
   setCharacter,
 }: CharLvInputInterface) => {
   const lvChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => {
-    let currentLv = +e.target.value;
+    const currentLv = +e.target.value;
     const newExperiencePoints = experiencePointsLv[currentLv - 1];
 
     let newProfinciency = Math.floor(currentLv / 4) + 2;

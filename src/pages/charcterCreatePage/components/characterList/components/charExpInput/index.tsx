@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, ChangeEvent } from "react";
+import  React ,{ Dispatch, SetStateAction, ChangeEvent } from "react";
 import styles from "./index.module.scss";
 
 import { experiencePointsLv } from "data/ruleLvData";

@@ -43,7 +43,7 @@ export const LoginPage = () => {
                   <Link to="/signup">Sign Up</Link>
                 </p>
                 <p>
-                  <span>Can't sign in? </span>
+                  <span>Cant sign in? </span>
                   <Link to="/home">Forgot Password</Link>
                 </p>
               </div>

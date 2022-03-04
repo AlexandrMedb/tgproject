@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import React,{ Dispatch, SetStateAction } from "react";
 // import styles from "./index.module.scss";
 
 import { characterInterface } from "interfaces/charactrInterface";
@@ -28,7 +28,7 @@ export const CharSavingThrowsSet = ({
               type="checkbox"
               checked={stat[e]}
               onChange={() => {
-                let result = { ...character };
+                const result = { ...character };
                 result.savingThrowModifiers[getKeyValue] =
                   !result.savingThrowModifiers[getKeyValue];
                 setCharacter(result);

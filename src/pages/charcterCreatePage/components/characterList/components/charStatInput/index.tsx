@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, ChangeEvent } from "react";
+import React, { Dispatch, SetStateAction, ChangeEvent } from "react";
 // import styles from "./index.module.scss";
 
 import { characterInterface } from "interfaces/charactrInterface";
@@ -29,7 +29,7 @@ export const CharStatInput = ({
     }
     value = Math.floor((value - 10) / 2);
 
-    let result: characterInterface = { ...character };
+    const result: characterInterface = { ...character };
     result.stats[getKeyValue] = value;
     setCharacter(result);
   };
