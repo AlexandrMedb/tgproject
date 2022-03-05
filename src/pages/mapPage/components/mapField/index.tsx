@@ -15,7 +15,6 @@ function mapStateToProps(state: any) {
 export const MapField = connect(mapStateToProps)((props: any) => {
 
     const {map} = props;
-    console.log(map);
     const [currenCell, setCurrentCell] = useState();
     const [wayLength, setWayLength] = useState(0);
 
@@ -27,7 +26,6 @@ export const MapField = connect(mapStateToProps)((props: any) => {
     } = map;
 
 
-    //chareacters
 
     const CreateMapArray = useCallback(() => {
         let res = new Array(cellHeight).fill([]);
@@ -44,6 +42,7 @@ export const MapField = connect(mapStateToProps)((props: any) => {
     return (
         <div>
             <div>wayLength {wayLength}</div>
+            <TurnOrder/>
             <section className={styles.mapWrapper}>
                 <div>
                     <img
@@ -77,3 +76,19 @@ export const MapField = connect(mapStateToProps)((props: any) => {
     );
 })
 
+function mapStateToProps1(state: any) {
+    console.log(state);
+    const { currentCharacters} = state
+    return {currentCharacters}
+}
+
+
+export const TurnOrder = connect(mapStateToProps1)(({currentCharacters}: any) => {
+
+return  <>{currentCharacters.map((el:any)=><CharacterCard data={el}/>)}</>
+})
+
+const CharacterCard =connect(mapStateToProps1)((props: any) => {
+
+    return <div>1</div>
+})
