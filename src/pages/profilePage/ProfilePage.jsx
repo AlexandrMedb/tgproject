@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styles from "./index.module.scss";
 
 // import { updateProfile, reload } from "firebase/auth";
-import { leave, auth } from "../../services/firebase";
 // import { getDatabase, ref, set, update, onValue } from "firebase/database";
 
 export const ProfilePage = () => {
@@ -18,15 +17,15 @@ export const ProfilePage = () => {
   //   });
   // }
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        setCurrentUser(user);
-      } else {
-        setCurrentUser(undefined);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       setCurrentUser(user);
+  //     } else {
+  //       setCurrentUser(undefined);
+  //     }
+  //   });
+  // }, []);
 
   if (currentUser) {
     const user = currentUser;
@@ -43,7 +42,7 @@ export const ProfilePage = () => {
               <h3> {user.displayName}</h3>
             </div>
 
-            <button onClick={() => leave()}>выйти</button>
+            <button onClick={() => {}}>выйти</button>
           </header>
           <section className={styles.userContentWraper}>
             <div className={styles.userContent}>

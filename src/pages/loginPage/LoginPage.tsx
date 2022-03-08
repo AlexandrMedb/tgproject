@@ -1,25 +1,35 @@
 import React from "react";
 
-import { Link, useHistory } from "react-router-dom";
-import { signIn } from "../../services/firebase";
+import { Link, useNavigate } from "react-router-dom";
+// import { signIn } from "../../services/firebase";
 
 import styles from "./index.module.scss";
 
 import { InputFiled } from "../../components/inputField";
 import { ImpButton } from "../../components/impButton";
+import {useHttp} from "../../hooks/http.hook";
+import {connect} from "react-redux";
+import {RootState} from "store/store";
+import {setUser} from "features/userSlice";
 
-export const LoginPage = () => {
-  const { push } = useHistory();
+
+function mapStateToProps(state:RootState) {
+  const {user} = state
+  return {user}
+}
+
+
+export const LoginPage =  connect(mapStateToProps,{setUser})(({setUser, user}: any) => {
+
+  const {loading, request, error, clearError} =useHttp()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    try {
-      await signIn(e.target.email.value, e.target.password.value);
-      e.target.email.value = "";
-      e.target.password.value = "";
-      push("/profile");
-    } catch (error) {
-      // setError(error.message);
+    const data = await request('/api/auth/login', 'POST', {password :e.target.password.value, email: e.target.email.value});
+    if(!error){
+      setUser(data);
+      navigate('/map')
     }
   };
 
@@ -53,4 +63,6 @@ export const LoginPage = () => {
       </main>
     </div>
   );
-};
+})
+
+

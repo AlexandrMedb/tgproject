@@ -1,26 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { leave, auth } from "../../services/firebase";
 import { NavLink } from "react-router-dom";
 
 import { reduceHomePath } from "../../routes/pathReducers";
 
 export const DevNavBar = () => {
   const [authed, setAuthed] = useState(false);
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        setAuthed(true);
-      } else {
-        setAuthed(false);
-      }
-    });
-  }, []);
+  // useEffect(() => {
+  //   auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       setAuthed(true);
+  //     } else {
+  //       setAuthed(false);
+  //     }
+  //   });
+  // }, []);
 
   let bg = "red";
   if (authed) bg = "green";
   return (
     <ul style={{ backgroundColor: bg }}>
-      <button onClick={() => leave()}>выйти</button>
+      <button onClick={() => {}}>выйти</button>
       <li>
         <NavLink style={{ marginRight: "20px" }} to={reduceHomePath()}>
           Home

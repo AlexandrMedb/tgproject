@@ -1,32 +1,39 @@
 import React from "react";
-import { updateProfile } from "firebase/auth";
-import { auth } from "../../services/firebase";
-import { signUp } from "../../services/firebase";
-import { Link, useHistory } from "react-router-dom";
-
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./index.module.scss";
 
 import { InputFiled } from "../../components/inputField";
 import { ImpButton } from "../../components/impButton";
+import {useHttp} from "../../hooks/http.hook";
+import {RootState} from "../../store/store";
+import {connect} from "react-redux";
+import {setUser} from "../../features/userSlice";
 
-export const SignUpPage = () => {
-  const { push } = useHistory();
+
+function mapStateToProps(state:RootState) {
+  const {user} = state
+  return {user}
+}
+
+
+
+export const SignUpPage =connect(mapStateToProps,{setUser})(({setUser, user}: any) => {
+  const {loading, request, error, clearError} =useHttp()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    try {
-      await signUp(e.target.email.value, e.target.password.value);
-      if (auth.currentUser) {
-        updateProfile(auth.currentUser, {
-          displayName: e.target.name.value,
-          photoURL:
-            "https://static8.depositphotos.com/1207999/1027/i/600/depositphotos_10275300-stock-photo-business-man-avatar-profile.jpg",
+    const data = await request('/api/auth/register', 'POST',
+        {
+          password :e.target.password.value,
+          email: e.target.email.value,
+          username: e.target.username.value
         });
-      }
-      push("/profile");
-    } catch (error) {
-      // setError(error.message);
+    if(!error){
+      setUser(data);
+      navigate('/map')
     }
+
   };
 
   return (
@@ -40,7 +47,7 @@ export const SignUpPage = () => {
         <section>
           <div className={styles.left}>
             <form onSubmit={handleSubmit}>
-              <InputFiled name="name" type="text" title="username" />
+              <InputFiled name="username" type="text" title="username" />
               <InputFiled name="email" type="email" title="email" />
               <InputFiled name="password" type="password" title="password" />
               <ImpButton text="Начать приключение" />
@@ -63,4 +70,4 @@ export const SignUpPage = () => {
       </main>
     </div>
   );
-};
+});

@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./index.module.scss";
 //components
-import {MapField} from "./components/mapField";
+import {MapField} from "./components/mapField/MapField";
 import {MapMenu} from './components/mapMenu';
 import {CharacterTracker} from "./components/charactersTracker/characterTracker";
 

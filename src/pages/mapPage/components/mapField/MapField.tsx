@@ -85,7 +85,7 @@ function mapStateToProps1(state: any) {
 
 export const TurnOrder = connect(mapStateToProps1)(({currentCharacters}: any) => {
 
-return  <>{currentCharacters.map((el:any)=><CharacterCard data={el}/>)}</>
+return  <></>
 })
 
 const CharacterCard =connect(mapStateToProps1)((props: any) => {
