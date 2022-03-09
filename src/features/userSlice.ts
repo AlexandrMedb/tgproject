@@ -15,8 +15,8 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         setUserData: (state, action: PayloadAction<userInterface>) => {
-            state.userId = action.payload.token;
-            state.token = action.payload.userId;
+            state.userId = action.payload.userId;
+            state.token = action.payload.token;
         },
     },
 });
@@ -27,15 +27,20 @@ export const {
 } = userSlice.actions;
 
 
-export const setUser = (data: userInterface): AppThunk => (
+export const login = (data: userInterface): AppThunk => (
     dispatch,
-    getState
 ) => {
     localStorage.setItem(TOKEN, data?.token)
     dispatch(setUserData(data));
 };
 
-
+export const logout = (): AppThunk => (
+    dispatch,
+    getState
+) => {
+    localStorage.removeItem(TOKEN)
+    dispatch(setUserData({token:'' ,userId: ''}));
+};
 
 
 export default userSlice.reducer;

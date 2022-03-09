@@ -1,7 +1,7 @@
 import React from "react";
 //common components
 import { ImpLink } from "../../components/impLink";
-import { MainNavBar } from "../../components/mainNavBar";
+import { MainNavBar } from "../../components/mainNavBar/MainNavBar";
 //special components
 import { AnimatedImg } from "./components/animatedImg/AnimatedImg";
 import styles from "./index.module.scss";

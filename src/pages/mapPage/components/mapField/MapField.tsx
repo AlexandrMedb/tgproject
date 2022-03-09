@@ -5,9 +5,10 @@ import {MapCell} from "../mapCell";
 import {Cell} from "../../interfaces/cell";
 import styles from "./index.module.scss";
 import {connect} from "react-redux";
+import {RootState} from "../../../../store/store";
 
 
-function mapStateToProps(state: any) {
+function mapStateToProps(state: RootState) {
     const {map} = state
     return {map}
 }
@@ -77,7 +78,6 @@ export const MapField = connect(mapStateToProps)((props: any) => {
 })
 
 function mapStateToProps1(state: any) {
-    console.log(state);
     const { currentCharacters} = state
     return {currentCharacters}
 }

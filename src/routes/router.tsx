@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { reduceHomePath } from "./pathReducers";
 
 //Pages
-import { HomePage } from "../pages/homePage";
+import { HomePage } from "../pages/homePage/HomePage";
 import { SignUpPage } from "../pages/signUpPage/SignUpPage";
 import { LoginPage } from "../pages/loginPage/LoginPage";
 import { MapPage } from "../pages/mapPage";

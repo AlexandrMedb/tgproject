@@ -7,7 +7,7 @@ import { ImpButton } from "../../components/impButton";
 import {useHttp} from "../../hooks/http.hook";
 import {RootState} from "../../store/store";
 import {connect} from "react-redux";
-import {setUser} from "../../features/userSlice";
+import {login} from "../../features/userSlice";
 
 
 function mapStateToProps(state:RootState) {
@@ -17,7 +17,7 @@ function mapStateToProps(state:RootState) {
 
 
 
-export const SignUpPage =connect(mapStateToProps,{setUser})(({setUser, user}: any) => {
+export const SignUpPage =connect(mapStateToProps,{setUser: login})(({setUser, user}: any) => {
   const {loading, request, error, clearError} =useHttp()
   const navigate = useNavigate();
 
@@ -29,11 +29,10 @@ export const SignUpPage =connect(mapStateToProps,{setUser})(({setUser, user}: an
           email: e.target.email.value,
           username: e.target.username.value
         });
-    if(!error){
+    if(data){
       setUser(data);
       navigate('/map')
     }
-
   };
 
   return (

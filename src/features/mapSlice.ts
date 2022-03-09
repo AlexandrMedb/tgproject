@@ -23,10 +23,8 @@ export const mapSlice = createSlice({
       }
     },
     setCellSquareSize: (state, action: PayloadAction<number>) => {
-      const newData = action.payload;
-      if (newData > 10) {
-        state.cellSquareSize = Math.floor(newData);
-      }
+
+      state.cellSquareSize = Math.floor(action.payload);
     },
     setWidthInCells: (state, action: PayloadAction<number>) => {
       const newData = action.payload;
