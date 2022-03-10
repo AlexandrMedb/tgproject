@@ -7,7 +7,7 @@ import { reduceHomePath } from "./pathReducers";
 import { HomePage } from "../pages/homePage/HomePage";
 import { SignUpPage } from "../pages/signUpPage/SignUpPage";
 import { LoginPage } from "../pages/loginPage/LoginPage";
-import { MapPage } from "../pages/mapPage";
+import { MapPage } from "../pages/mapPage/MapPage";
 import { ProfilePage } from "../pages/profilePage/ProfilePage";
 import { CharacterCreatePage } from "../pages/charcterCreatePage";
 

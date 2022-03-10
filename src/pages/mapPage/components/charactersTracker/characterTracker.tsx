@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { RootState } from 'store/store';
 
 function mapStateToProps(state: RootState) {
-  const { map } = state;
-  return { map };
+
+  return {  };
 }
 
 export const CharacterTracker = connect(mapStateToProps)(() => {

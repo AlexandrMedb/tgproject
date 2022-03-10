@@ -31,6 +31,7 @@ export const login = (data: userInterface): AppThunk => (
     dispatch,
 ) => {
     localStorage.setItem(TOKEN, data?.token)
+    localStorage.setItem(USERID, data?.userId)
     dispatch(setUserData(data));
 };
 
@@ -39,6 +40,7 @@ export const logout = (): AppThunk => (
     getState
 ) => {
     localStorage.removeItem(TOKEN)
+    localStorage.removeItem(USERID)
     dispatch(setUserData({token:'' ,userId: ''}));
 };
 

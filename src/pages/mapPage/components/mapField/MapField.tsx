@@ -6,16 +6,18 @@ import {Cell} from "../../interfaces/cell";
 import styles from "./index.module.scss";
 import {connect} from "react-redux";
 import {RootState} from "../../../../store/store";
+import {IMG_HOST} from "../../../../const/hosts";
 
 
 function mapStateToProps(state: RootState) {
-    const {map} = state
-    return {map}
+    const {map,user} = state
+    const {userId} = user;
+    return { map, userId}
 }
 
 export const MapField = connect(mapStateToProps)((props: any) => {
 
-    const {map} = props;
+    const {map,userId} = props;
     const [currenCell, setCurrentCell] = useState();
     const [wayLength, setWayLength] = useState(0);
 
@@ -48,7 +50,7 @@ export const MapField = connect(mapStateToProps)((props: any) => {
                 <div>
                     <img
                         style={{width: `${mapBackgroundWidth}px`}}
-                        src={mapBackground}
+                        src={`${IMG_HOST}/${userId}/sasas.jpg`}
                         alt="map"
                     />
                 </div>

@@ -1,14 +1,16 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import mapReducer from "features/mapSlice";
+import currentMapReducer from "features/currentMapSlice";
 import currentCharactersReducer from "features/charaptersPositionsSlice";
 import currentCharacterReducer from "features/curentCharapterSlice";
 import userReducer from "features/userSlice";
+import mapsReducer from "features/mapsSlice"
 
 
 export const store = configureStore({
   reducer: {
     user:userReducer,
-    map: mapReducer,
+    map: currentMapReducer,
+    maps:mapsReducer,
     currentCharacters: currentCharactersReducer,
     currentCharacter: currentCharacterReducer,
   },

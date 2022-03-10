@@ -9,17 +9,18 @@ import {
     setCellSquareSize,
     setWidthInCells,
     setHeightInCells,
-} from "features/mapSlice";
+} from "features/currentMapSlice";
 import {useHttp} from "../../../../hooks/http.hook";
 import {RootState} from "../../../../store/store";
 import {connect} from "react-redux";
+import {mapInterface} from "../../../../interfaces/mapInterface";
 
 
 function mapStateToProps(state: RootState) {
-    const {user, map} = state
+    const {user, map, maps} = state
     const {token} = user;
     console.log(user);
-    return {token, map}
+    return {token,map, maps}
 }
 
 export const MapMenu = connect(mapStateToProps, {
@@ -29,7 +30,7 @@ export const MapMenu = connect(mapStateToProps, {
     setWidthInCells,
     setHeightInCells,
 })(({
-        token, map, setMap,
+        token, map, setMap, maps,
         setMapWidthPX,
         setCellSquareSize,
         setWidthInCells,
@@ -52,19 +53,6 @@ export const MapMenu = connect(mapStateToProps, {
         console.log(data, error)
     }
 
-    const fetchMaps = useCallback(async () => {
-        try {
-            const fetched = await request('/api/link', 'GET', null, {
-                Authorization: `Bearer ${token}`
-            })
-
-        } catch (e) {
-        }
-    }, [token, request])
-
-    useEffect(() => {
-        fetchMaps()
-    }, [fetchMaps])
 
 
     return (
@@ -122,6 +110,7 @@ export const MapMenu = connect(mapStateToProps, {
             <button type="button" onClick={handleSubmit}>
                 Сохранить
             </button>
+            {maps.map((el:mapInterface)=><div key={el.mapName}>{el.mapName}</div>)}
         </div>
     );
 });
