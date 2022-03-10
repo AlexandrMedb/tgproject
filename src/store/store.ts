@@ -9,7 +9,7 @@ import mapsReducer from "features/mapsSlice"
 export const store = configureStore({
   reducer: {
     user:userReducer,
-    map: currentMapReducer,
+    currentMap: currentMapReducer,
     maps:mapsReducer,
     currentCharacters: currentCharactersReducer,
     currentCharacter: currentCharacterReducer,

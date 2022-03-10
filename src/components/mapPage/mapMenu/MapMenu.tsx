@@ -10,17 +10,17 @@ import {
     setWidthInCells,
     setHeightInCells,
 } from "features/currentMapSlice";
-import {useHttp} from "../../../../hooks/http.hook";
-import {RootState} from "../../../../store/store";
+import {useHttp} from "hooks/http.hook";
+import {RootState} from "store/store";
 import {connect} from "react-redux";
-import {mapInterface} from "../../../../interfaces/mapInterface";
+import {mapInterface} from "interfaces/mapInterface";
 
 
 function mapStateToProps(state: RootState) {
-    const {user, map, maps} = state
+    const {user, currentMap, maps} = state
     const {token} = user;
     console.log(user);
-    return {token,map, maps}
+    return {token,currentMap, maps}
 }
 
 export const MapMenu = connect(mapStateToProps, {
@@ -30,7 +30,7 @@ export const MapMenu = connect(mapStateToProps, {
     setWidthInCells,
     setHeightInCells,
 })(({
-        token, map, setMap, maps,
+        token, currentMap, setMap, maps,
         setMapWidthPX,
         setCellSquareSize,
         setWidthInCells,
@@ -41,11 +41,11 @@ export const MapMenu = connect(mapStateToProps, {
     const handleSubmit = async () => {
         console.log(token)
         const data = await request('/api/map/', 'POST', {
-            mapLink: map.mapLink,
-            mapWidthPx: map.mapWidthPx,
-            cellSquareSize: map.cellSquareSize,
-            widthInCells: map.widthInCells,
-            heightInCells: map.heightInCells,
+            mapLink: currentMap.mapLink,
+            mapWidthPx: currentMap.mapWidthPx,
+            cellSquareSize: currentMap.cellSquareSize,
+            widthInCells: currentMap.widthInCells,
+            heightInCells: currentMap.heightInCells,
         }, {
             Authorization: `Bearer ${token}`
         })
@@ -60,7 +60,7 @@ export const MapMenu = connect(mapStateToProps, {
             <div>
                 <p>Ссылка на карту</p>
                 <input
-                    value={map.mapLink}
+                    value={currentMap.mapLink}
                     onChange={(e) => {
                         setMap(e.target.value);
                     }}
@@ -71,7 +71,7 @@ export const MapMenu = connect(mapStateToProps, {
             <div>
                 <p>Размер карты в px</p>
                 <input
-                    value={map.mapWidthPx}
+                    value={currentMap.mapWidthPx}
                     onChange={(e) => setMapWidthPX(+e.target.value)}
                     name="mapLink"
                     type="number"
@@ -80,7 +80,7 @@ export const MapMenu = connect(mapStateToProps, {
             <div>
                 <p>ширина карты в клетках</p>
                 <input
-                    value={map.widthInCells}
+                    value={currentMap.widthInCells}
                     onChange={(e) => {
                         setWidthInCells(+e.target.value);
 
@@ -92,7 +92,7 @@ export const MapMenu = connect(mapStateToProps, {
             <div>
                 <p>Высота карты в клетках</p>
                 <input
-                    value={map.heightInCells}
+                    value={currentMap.heightInCells}
                     onChange={(e) => setHeightInCells(+e.target.value)}
                     name="mapLink"
                     type="number"
@@ -101,7 +101,7 @@ export const MapMenu = connect(mapStateToProps, {
             <div>
                 <p>Размер клетки в PX</p>
                 <input
-                    value={map.cellSquareSize}
+                    value={currentMap.cellSquareSize}
                     onChange={(e) => setCellSquareSize(+e.target.value)}
                     name="mapLink"
                     type="number"
@@ -110,7 +110,7 @@ export const MapMenu = connect(mapStateToProps, {
             <button type="button" onClick={handleSubmit}>
                 Сохранить
             </button>
-            {maps.map((el:mapInterface)=><div key={el.mapName}>{el.mapName}</div>)}
+            {maps.map((el:mapInterface)=><div onClick={()=>setMap(el)} key={el.mapName}>{el.mapName}</div>)}
         </div>
     );
 });

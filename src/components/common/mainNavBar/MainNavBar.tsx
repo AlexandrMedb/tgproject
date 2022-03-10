@@ -2,11 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import style from "./index.module.scss";
 
-import { reduceHomePath } from "../../routes/pathReducers";
+import { reduceHomePath } from "../../../routes/pathReducers";
 
 import { ImpLink } from "../impLink";
 import {connect} from "react-redux";
-import {RootState} from "../../store/store";
+import {RootState} from "../../../store/store";
 
 
 function mapStateToProps(state: RootState) {

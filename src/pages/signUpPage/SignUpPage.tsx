@@ -2,8 +2,8 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./index.module.scss";
 
-import { InputFiled } from "../../components/inputField";
-import { ImpButton } from "../../components/impButton";
+import { InputFiled } from "../../components/common/inputField";
+import { ImpButton } from "../../components/common/impButton";
 import {useHttp} from "../../hooks/http.hook";
 import {RootState} from "../../store/store";
 import {connect} from "react-redux";

@@ -19,8 +19,8 @@ interface cell {
 
 
 function mapStateToProps(state: any) {
-    const {map} = state
-    return {map}
+    const {currentMap} = state
+    return {currentMap}
 }
 
 export const MapCell = connect(mapStateToProps)(({
@@ -29,11 +29,11 @@ export const MapCell = connect(mapStateToProps)(({
                                                      setCurrentCell,
                                                      wayLength,
                                                      setWayLength,
-                                                     map
+                                                     currentMap
                                                  }: any) => {
     const dispatch = useAppDispatch();
 
-    const cellSquareSize = map.cellSquareSize;
+    const cellSquareSize = currentMap.cellSquareSize;
     let pc = "";
     let drag = false;
     let cursor = "grap";

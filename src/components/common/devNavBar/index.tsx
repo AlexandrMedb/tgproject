@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import { reduceHomePath } from "../../routes/pathReducers";
+import { reduceHomePath } from "../../../routes/pathReducers";
 
 export const DevNavBar = () => {
   const [authed, setAuthed] = useState(false);

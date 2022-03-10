@@ -1,23 +1,23 @@
 import React, {useState, useCallback} from "react";
 
 //components
-import {MapCell} from "../mapCell";
-import {Cell} from "../../interfaces/cell";
+import {MapCell} from "../mapCell/mapCell";
+import {Cell} from "../../../pages/mapPage/interfaces/cell";
 import styles from "./index.module.scss";
 import {connect} from "react-redux";
-import {RootState} from "../../../../store/store";
-import {IMG_HOST} from "../../../../const/hosts";
+import {RootState} from "../../../store/store";
+import {IMG_HOST} from "../../../const/hosts";
 
 
 function mapStateToProps(state: RootState) {
-    const {map,user} = state
+    const {currentMap,user} = state
     const {userId} = user;
-    return { map, userId}
+    return { currentMap, userId}
 }
 
 export const MapField = connect(mapStateToProps)((props: any) => {
 
-    const {map,userId} = props;
+    const {currentMap,userId} = props;
     const [currenCell, setCurrentCell] = useState();
     const [wayLength, setWayLength] = useState(0);
 
@@ -26,7 +26,7 @@ export const MapField = connect(mapStateToProps)((props: any) => {
         mapWidthPx: mapBackgroundWidth,
         widthInCells: cellWidth,
         heightInCells: cellHeight
-    } = map;
+    } = currentMap;
 
 
 
@@ -50,7 +50,7 @@ export const MapField = connect(mapStateToProps)((props: any) => {
                 <div>
                     <img
                         style={{width: `${mapBackgroundWidth}px`}}
-                        src={`${IMG_HOST}/${userId}/sasas.jpg`}
+                        src={`${IMG_HOST}/${userId}/${currentMap.mapName}`}
                         alt="map"
                     />
                 </div>
