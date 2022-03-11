@@ -1,13 +1,17 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./index.module.scss";
+import styles from './index.module.scss';
 
-export const CharHeaderDataChoise = ({character, setCharacter, data, datField}:any) => {
+export const CharHeaderDataChoise = ({
+  character,
+  setCharacter,
+  data,
+  datField}:any) => {
   return (
     <div className={styles.charData}>
       <select
         onChange={(e) => {
-          const value = { ...character };
+          const value = {...character};
           value[datField] = e.target.value;
           setCharacter(value);
         }}

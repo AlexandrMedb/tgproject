@@ -171,7 +171,8 @@ export const CharacterCreatePage = () => {
         <div className={styles.characterHeader}></div>
 
         <div>
-          {/* <h1>{currentCharacter ? currentCharacter : "Выбеи персонажа"}</h1> */}
+          {/* <h1>{currentCharacter ? currentCharacter :
+          "Выбеи персонажа"}</h1> */}
           {/* <form action="">
             {Object.keys(character.stats).map((stat) => (
               <div key={stat}>

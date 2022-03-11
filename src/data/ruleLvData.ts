@@ -1,4 +1,4 @@
-export const lvArray = Array.from({ length: 20 }, (v, k) => k + 1);
+export const lvArray = Array.from({length: 20}, (v, k) => k + 1);
 
 export const experiencePointsLv = [
   0, 300, 900, 2700, 6500, 14000, 23000, 34000, 48000, 64000, 85000, 100000,

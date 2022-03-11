@@ -1,8 +1,8 @@
-import  React ,{ Dispatch, SetStateAction, ChangeEvent } from "react";
-import styles from "./index.module.scss";
+import React, {Dispatch, SetStateAction, ChangeEvent} from 'react';
+import styles from './index.module.scss';
 
-import { experiencePointsLv } from "data/ruleLvData";
-import { characterInterface } from "interfaces/charactrInterface";
+import {experiencePointsLv} from 'data/ruleLvData';
+import {characterInterface} from 'interfaces/charactrInterface';
 
 interface CharLvInputInterface {
   character: characterInterface;
@@ -26,7 +26,7 @@ export const CharExpInput = ({
 
     let newProfinciency = Math.floor(newLv / 4) + 2;
     if (newLv % 4 === 0) newProfinciency -= 1;
-    const value = { ...character };
+    const value = {...character};
     value.experiencePoints = currentEx;
     value.lv = newLv;
     value.profinciency = newProfinciency;

@@ -28,7 +28,7 @@ export const MapField = connect(mapStateToProps)((props: any) => {
   } = currentMap;
 
 
-  const CreateMapArray = useCallback(() => {
+  const createMapArray = useCallback(() => {
     let res = new Array(cellHeight).fill([]);
     const cell: Cell = {
       size: 0,
@@ -38,7 +38,7 @@ export const MapField = connect(mapStateToProps)((props: any) => {
     return res;
   }, [cellHeight, cellWidth]);
 
-  const mapArray = CreateMapArray();
+  const mapArray = createMapArray();
 
   return (
     <div>
@@ -78,14 +78,13 @@ export const MapField = connect(mapStateToProps)((props: any) => {
 });
 
 
-// eslint-disable-next-line require-jsdoc
 function mapStateToProps1(state: any) {
   const {currentCharacters} = state;
   return {currentCharacters};
 }
 
 
-export const TurnOrder = connect(mapStateToProps1)(({currentCharacters}: any) => {
+export const TurnOrder = connect(mapStateToProps1)(({}: any) => {
   return <></>;
 });
 
