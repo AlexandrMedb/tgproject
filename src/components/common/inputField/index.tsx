@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./index.module.scss";
+import styles from './index.module.scss';
 
 export interface inputProps {
   title?: string;
@@ -8,7 +8,7 @@ export interface inputProps {
   name?: string;
 }
 
-export const InputFiled = ({ title, type, name }: inputProps) => {
+export const InputFiled = ({title, type, name}: inputProps) => {
   return (
     <div className={styles.inputFiled}>
       <h3>{title}</h3>

@@ -1,6 +1,7 @@
 import React, {} from 'react';
 import styles from './index.module.scss';
 
+import axios from 'axios';
 
 import {
   setMap,
@@ -59,16 +60,21 @@ export const MapMenu = connect(mapStateToProps, {
     console.log(formData.get('file'));
 
     const data1 = new FormData();
-    data1.append('file', formData.get('file'));
-    data1.append('user', 'hubot');
-    const data = await request('/api/map/', 'POST', {
-      mapName: formData.get('mapName'),
-      file: formData.get('file'),
+    data1.append('file', formData.get('file')||'');
+    // data1.append('file', formData.get('file'));
+    // data1.append('user', 'hubot');
+    // const data = await request('/api/map/', 'POST', {
+    //   files: formData.get('file'),
+    // }, {
+    //   'Authorization': `Bearer ${token}`,
+    //   'content-type': 'multypart/form-data',
+    // });
 
-    }, {
-      Authorization: `Bearer ${token}`,
+    const response = await axios.post(`http://localhost:3000/api/map/`, formData, {
+      headers: {Authorization: `Bearer ${localStorage.getItem('token')}`},
     });
   };
+
 
   const mapNameHandler = (mapName:string)=>{
     return mapName.split('.').slice(0, -1).join('.');

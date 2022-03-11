@@ -2,7 +2,8 @@ import {
   characterClassType,
   characterRaceType,
 } from 'interfaces/charactrInterface/types/characterClassAndRaceType';
-import {characterBackgroundType} from 'interfaces/charactrInterface/types/characterBackgroundType';
+import {characterBackgroundType}
+  from 'interfaces/charactrInterface/types/characterBackgroundType';
 import {alignmentType} from 'interfaces/charactrInterface/types/otherTypes';
 
 export const characterClasses: Array<characterClassType> = [
