@@ -52,6 +52,24 @@ export const MapMenu = connect(mapStateToProps, {
     console.log(data, error);
   };
 
+  const mapSubmit= async (e: React.FormEvent<HTMLFormElement>)=>{
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    // console.log(formData.get('mapName'));
+    console.log(formData.get('file'));
+
+    const data1 = new FormData();
+    data1.append('file', formData.get('file'));
+    data1.append('user', 'hubot');
+    const data = await request('/api/map/', 'POST', {
+      mapName: formData.get('mapName'),
+      file: formData.get('file'),
+
+    }, {
+      Authorization: `Bearer ${token}`,
+    });
+  };
+
   const mapNameHandler = (mapName:string)=>{
     return mapName.split('.').slice(0, -1).join('.');
   };
@@ -112,6 +130,25 @@ export const MapMenu = connect(mapStateToProps, {
 
         <ImpButton text={'Создать карту'} />
       </div>
+
+      <form className={styles.form} onSubmit={mapSubmit}>
+        <div>
+          <label>Имя карты</label>
+          <input
+            type="text"
+            name={'mapName'}
+          />
+        </div>
+
+        <label>Размер карты в px</label>
+        <input
+          onChange={(e) => setMapWidthPX(+e.target.value)}
+          type='file'
+          accept='image/*'
+          name={'file'}
+        />
+        <ImpButton text={'Создать карту'} type={'submit'}/>
+      </form>
     </section>
   );
 });
