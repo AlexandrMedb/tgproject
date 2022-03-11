@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import styles from "./index.module.scss";
+import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+import styles from './index.module.scss';
 
 // import { updateProfile, reload } from "firebase/auth";
 // import { getDatabase, ref, set, update, onValue } from "firebase/database";
 
 export const ProfilePage = () => {
   // const [data, setData] = useState();
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser] = useState();
 
   // function writeUserData(userId) {
   //   const db = getDatabase();
@@ -42,13 +42,13 @@ export const ProfilePage = () => {
               <h3> {user.displayName}</h3>
             </div>
 
-            <button onClick={() => {}}>выйти</button>
+            <button >выйти</button>
           </header>
           <section className={styles.userContentWraper}>
             <div className={styles.userContent}>
               <h2>Герои</h2>
               <Link
-                style={{ marginRight: "20px" }}
+                style={{marginRight: '20px'}}
                 to={`/characterCreatePage/${user.uid}`}
               >
                 Создать нового персонажа

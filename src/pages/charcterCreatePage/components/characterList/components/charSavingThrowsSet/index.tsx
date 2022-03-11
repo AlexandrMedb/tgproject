@@ -1,8 +1,8 @@
-import React,{ Dispatch, SetStateAction } from "react";
+import React, {Dispatch, SetStateAction} from 'react';
 // import styles from "./mapPage.module.scss";
 
-import { characterInterface } from "interfaces/charactrInterface";
-import { statNameType } from "interfaces/charactrInterface/types/otherTypes";
+import {characterInterface} from 'interfaces/charactrInterface';
+import {statNameType} from 'interfaces/charactrInterface/types/otherTypes';
 
 interface charSavingThrowsSetInterface {
   character: characterInterface;
@@ -28,7 +28,7 @@ export const CharSavingThrowsSet = ({
               type="checkbox"
               checked={stat[e]}
               onChange={() => {
-                const result = { ...character };
+                const result = {...character};
                 result.savingThrowModifiers[getKeyValue] =
                   !result.savingThrowModifiers[getKeyValue];
                 setCharacter(result);

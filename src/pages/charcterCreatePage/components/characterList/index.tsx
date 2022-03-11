@@ -1,26 +1,26 @@
-import React,{ useState } from "react";
+import React, {useState} from 'react';
 // import { useParams } from "react-router-dom";
 // import { useAppSelector, useAppDispatch } from "app/hooks";
 // import { selectCurentCharacter } from "app/currentCharacterSlice";
 
-import { characterInterface } from "interfaces/charactrInterface";
+import {characterInterface} from 'interfaces/charactrInterface';
 
-import styles from "./index.module.scss";
-//components
-import { CharHeaderDataChoise } from "./components/CharHeaderDataChoise";
-import { CharExpInput } from "./components/charExpInput";
-import { CharLvInput } from "./components/charLvInput";
-import { CharStatInput } from "./components/charStatInput";
-import { CharSavingThrowsSet } from "./components/charSavingThrowsSet";
+import styles from './index.module.scss';
+// components
+import {CharHeaderDataChoise} from './components/CharHeaderDataChoise';
+import {CharExpInput} from './components/charExpInput';
+import {CharLvInput} from './components/charLvInput';
+import {CharStatInput} from './components/charStatInput';
+import {CharSavingThrowsSet} from './components/charSavingThrowsSet';
 
-import { defaltCharacter } from "data/defaultCharacter";
-//inputsData
+import {defaltCharacter} from 'data/defaultCharacter';
+// inputsData
 import {
   characterClasses,
   characterRaces,
   characterBackgrounds,
   characterAlignments,
-} from "data/gameData";
+} from 'data/gameData';
 
 export const CharacterList = () => {
   // const dispatch = useAppDispatch();
@@ -38,7 +38,7 @@ export const CharacterList = () => {
             value={character.name}
             onChange={(e) => {
               const target = e.target as HTMLInputElement;
-              const value = { ...character };
+              const value = {...character};
               value.name = target.value;
               setCharacter(value);
             }}

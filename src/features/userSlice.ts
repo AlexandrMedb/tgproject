@@ -1,47 +1,46 @@
-import {createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {userInterface} from "../interfaces/userInterfaces";
-import { AppThunk } from 'store/store';
-import {TOKEN, USERID} from "../const/localStorageKeys";
-
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {userInterface} from '../interfaces/userInterfaces';
+import {AppThunk} from 'store/store';
+import {TOKEN, USERID} from '../const/localStorageKeys';
 
 
 const initialState: userInterface = {
-    userId: localStorage.getItem(USERID) || "",
-    token: localStorage.getItem(TOKEN) || "",
+  userId: localStorage.getItem(USERID) || '',
+  token: localStorage.getItem(TOKEN) || '',
 };
 
 export const userSlice = createSlice({
-    name: 'user',
-    initialState,
-    reducers: {
-        setUserData: (state, action: PayloadAction<userInterface>) => {
-            state.userId = action.payload.userId;
-            state.token = action.payload.token;
-        },
+  name: 'user',
+  initialState,
+  reducers: {
+    setUserData: (state, action: PayloadAction<userInterface>) => {
+      state.userId = action.payload.userId;
+      state.token = action.payload.token;
     },
+  },
 });
 
 
 export const {
-    setUserData,
+  setUserData,
 } = userSlice.actions;
 
 
 export const login = (data: userInterface): AppThunk => (
     dispatch,
 ) => {
-    localStorage.setItem(TOKEN, data?.token)
-    localStorage.setItem(USERID, data?.userId)
-    dispatch(setUserData(data));
+  localStorage.setItem(TOKEN, data?.token);
+  localStorage.setItem(USERID, data?.userId);
+  dispatch(setUserData(data));
 };
 
 export const logout = (): AppThunk => (
     dispatch,
-    getState
+    getState,
 ) => {
-    localStorage.removeItem(TOKEN)
-    localStorage.removeItem(USERID)
-    dispatch(setUserData({token:'' ,userId: ''}));
+  localStorage.removeItem(TOKEN);
+  localStorage.removeItem(USERID);
+  dispatch(setUserData({token: '', userId: ''}));
 };
 
 

@@ -1,35 +1,37 @@
-import React from "react";
+import React from 'react';
 
-import { Link, useNavigate } from "react-router-dom";
+import {Link, useNavigate} from 'react-router-dom';
 // import { signIn } from "../../services/firebase";
 
-import styles from "./index.module.scss";
+import styles from './index.module.scss';
 
-import { InputFiled } from "../../components/common/inputField";
-import { ImpButton } from "../../components/common/impButton/impButton";
-import {useHttp} from "../../hooks/http.hook";
-import {connect} from "react-redux";
-import {RootState} from "store/store";
-import {login} from "features/userSlice";
+import {InputFiled} from '../../components/common/inputField';
+import {ImpButton} from '../../components/common/impButton/impButton';
+import {useHttp} from '../../hooks/http.hook';
+import {connect} from 'react-redux';
+import {RootState} from 'store/store';
+import {login} from 'features/userSlice';
 
 
 function mapStateToProps(state:RootState) {
-  const {user} = state
-  return {user}
+  const {user} = state;
+  return {user};
 }
 
 
-export const LoginPage =  connect(mapStateToProps,{setUser: login})(({setUser, user}: any) => {
-
-  const {loading, request, error, clearError} =useHttp()
+export const LoginPage = connect(mapStateToProps, {login})((props:any) => {
+  const {login, user}=props;
+  const {loading, request, error, clearError} =useHttp();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const data = await request('/api/auth/login', 'POST', {password :e.target.password.value, email: e.target.email.value});
-    if(data){
-      setUser(data);
-      navigate('/map')
+    const data = await request('/api/auth/login',
+        'POST',
+        {password: e.target.password.value, email: e.target.email.value});
+    if (data) {
+      login(data);
+      navigate('/map');
     }
   };
 
@@ -63,6 +65,6 @@ export const LoginPage =  connect(mapStateToProps,{setUser: login})(({setUser, u
       </main>
     </div>
   );
-})
+});
 
 

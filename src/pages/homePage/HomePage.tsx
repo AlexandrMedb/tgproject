@@ -1,10 +1,10 @@
-import React from "react";
-//common components
-import { ImpLink } from "../../components/common/impLink";
-import { MainNavBar } from "../../components/common/mainNavBar/MainNavBar";
-//special components
-import { AnimatedImg } from "./components/animatedImg/AnimatedImg";
-import styles from "./index.module.scss";
+import React from 'react';
+// common components
+import {ImpLink} from '../../components/common/impLink';
+import {MainNavBar} from '../../components/common/mainNavBar/MainNavBar';
+// special components
+import {AnimatedImg} from './components/animatedImg/AnimatedImg';
+import styles from './index.module.scss';
 
 export const HomePage = () => {
   return (

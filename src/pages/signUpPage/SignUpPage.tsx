@@ -1,37 +1,39 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styles from "./index.module.scss";
+import React from 'react';
+import {Link, useNavigate} from 'react-router-dom';
+import styles from './index.module.scss';
 
-import { InputFiled } from "../../components/common/inputField";
-import { ImpButton } from "../../components/common/impButton/impButton";
-import {useHttp} from "../../hooks/http.hook";
-import {RootState} from "../../store/store";
-import {connect} from "react-redux";
-import {login} from "../../features/userSlice";
+import {InputFiled} from '../../components/common/inputField';
+import {ImpButton} from '../../components/common/impButton/impButton';
+import {useHttp} from '../../hooks/http.hook';
+import {RootState} from '../../store/store';
+import {connect} from 'react-redux';
+import {login} from '../../features/userSlice';
 
 
 function mapStateToProps(state:RootState) {
-  const {user} = state
-  return {user}
+  const {user} = state;
+  return {user};
 }
 
 
-
-export const SignUpPage =connect(mapStateToProps,{setUser: login})(({setUser, user}: any) => {
-  const {loading, request, error, clearError} =useHttp()
+export const SignUpPage = connect(mapStateToProps,
+    {setUser: login})(({
+  setUser,
+  user}: any) => {
+  const {loading, request, error, clearError} =useHttp();
   const navigate = useNavigate();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const data = await request('/api/auth/register', 'POST',
         {
-          password :e.target.password.value,
+          password: e.target.password.value,
           email: e.target.email.value,
-          username: e.target.username.value
+          username: e.target.username.value,
         });
-    if(data){
+    if (data) {
       setUser(data);
-      navigate('/map')
+      navigate('/map');
     }
   };
 

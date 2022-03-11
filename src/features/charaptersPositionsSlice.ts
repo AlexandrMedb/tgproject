@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "store/store";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {RootState} from 'store/store';
 
 export interface character {
-  owner?: "gm" | string; //playerID
+  owner?: 'gm' | string; // playerID
   characterId: string;
   name: string;
   stats?: {
@@ -26,25 +26,25 @@ export interface currentCharcters {
 
 const initialState: currentCharcters = {
   id0_0: {
-    characterId: "1a",
-    name: "gnol",
+    characterId: '1a',
+    name: 'gnol',
   },
   id1_0: {
-    characterId: "1a",
-    name: "elf",
+    characterId: '1a',
+    name: 'elf',
   },
   id5_5: {
-    characterId: "1a",
-    name: "gnom",
+    characterId: '1a',
+    name: 'gnom',
   },
   id23_3: {
-    characterId: "1a",
-    name: "solder",
+    characterId: '1a',
+    name: 'solder',
   },
 };
 
 export const charaptersPositionsSlice = createSlice({
-  name: "currentCharcters",
+  name: 'currentCharcters',
   initialState,
   reducers: {
     addCharcter: (state, action: PayloadAction<characterDis>) => {
@@ -56,7 +56,7 @@ export const charaptersPositionsSlice = createSlice({
   },
 });
 
-export const { addCharcter, rmCharcter } = charaptersPositionsSlice.actions;
+export const {addCharcter, rmCharcter} = charaptersPositionsSlice.actions;
 
 export const selectAllCurentCharacters = (state: RootState) =>
   state.currentCharacters;

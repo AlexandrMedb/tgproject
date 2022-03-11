@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "store/hooks";
-import { selectCurentCharacter } from "features/curentCharapterSlice";
+import React, {useState} from 'react';
+import {useParams} from 'react-router-dom';
+import {useAppSelector, useAppDispatch} from 'store/hooks';
+import {selectCurentCharacter} from 'features/curentCharapterSlice';
 
-import { CharacterList } from "./components/characterList";
+import {CharacterList} from './components/characterList';
 
-import styles from "./index.module.scss";
+import styles from './index.module.scss';
 
 import {
   getDatabase,
@@ -15,23 +15,23 @@ import {
   get,
   push,
   onValue,
-} from "firebase/database";
+} from 'firebase/database';
 export const CharacterCreatePage = () => {
   const dispatch = useAppDispatch();
 
   const char = useAppSelector(selectCurentCharacter);
 
   const [characterList, setCharacterList] = useState({});
-  const [currentCharacter, setCurrentCharacter] = useState("");
+  const [currentCharacter, setCurrentCharacter] = useState('');
 
   const [character, setCharacter] = useState({
-    owner: "gm",
-    characterId: "13ads",
-    name: "vas",
-    class: "Paladin",
-    race: "Elf",
-    background: "Spy",
-    alignment: "True neutral",
+    owner: 'gm',
+    characterId: '13ads',
+    name: 'vas',
+    class: 'Paladin',
+    race: 'Elf',
+    background: 'Spy',
+    alignment: 'True neutral',
     experiencePoints: 0,
     lv: 1,
     profinciency: 2,
@@ -49,75 +49,75 @@ export const CharacterCreatePage = () => {
     skils: {
       acrobatics: {
         isSet: false,
-        depence: "dexteruty",
+        depence: 'dexteruty',
       },
       animalHandling: {
         isSet: false,
-        depence: "wisdom",
+        depence: 'wisdom',
       },
       arcana: {
         isSet: false,
-        depence: "itellegence",
+        depence: 'itellegence',
       },
       athletics: {
         isSet: false,
-        depence: "strength",
+        depence: 'strength',
       },
       deception: {
         isSet: false,
-        depence: "charisma",
+        depence: 'charisma',
       },
       history: {
         isSet: false,
-        depence: "itellegence",
+        depence: 'itellegence',
       },
       insight: {
         isSet: false,
-        depence: "wisdom",
+        depence: 'wisdom',
       },
       intimidation: {
         isSet: false,
-        depence: "charisma",
+        depence: 'charisma',
       },
       investigation: {
         isSet: false,
-        depence: "itellegence",
+        depence: 'itellegence',
       },
       medicine: {
         isSet: false,
-        depence: "wisdom",
+        depence: 'wisdom',
       },
       nature: {
         isSet: false,
-        depence: "itellegence",
+        depence: 'itellegence',
       },
       perception: {
         isSet: false,
-        depence: "wisdom",
+        depence: 'wisdom',
       },
       performance: {
         isSet: false,
-        depence: "charisma",
+        depence: 'charisma',
       },
       persuasion: {
         isSet: false,
-        depence: "charisma",
+        depence: 'charisma',
       },
       religion: {
         isSet: false,
-        depence: "itellegence",
+        depence: 'itellegence',
       },
       sleightOfHand: {
         isSet: false,
-        depence: "dexteruty",
+        depence: 'dexteruty',
       },
       Stealth: {
         isSet: false,
-        depence: "dexteruty",
+        depence: 'dexteruty',
       },
       survival: {
         isSet: false,
-        depence: "wisdom",
+        depence: 'wisdom',
       },
     },
     savingThrowModifiers: {
@@ -132,7 +132,7 @@ export const CharacterCreatePage = () => {
 
   const db = getDatabase();
 
-  const { chatId } = useParams<{ chatId?: string }>();
+  const {chatId} = useParams<{ chatId?: string }>();
 
   let data = {};
   const starCountRef = ref(db, `profile/${chatId}/characters`);

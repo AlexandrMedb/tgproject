@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 // import { type } from "os";
-import { RootState } from "store/store";
+import {RootState} from 'store/store';
 
-import { characterInterface } from "interfaces/charactrInterface";
+import {characterInterface} from 'interfaces/charactrInterface';
 
 // const initialState: characterInterface = {
 //   owner: "gm",
@@ -113,7 +113,7 @@ import { characterInterface } from "interfaces/charactrInterface";
 const initialState = {};
 
 export const currentCharcterSlice = createSlice({
-  name: "currentCharcters",
+  name: 'currentCharcters',
   initialState,
   reducers: {
     setCharcter: (state, action: PayloadAction<characterInterface>) => {

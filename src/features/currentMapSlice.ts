@@ -1,8 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {mapInterface} from 'interfaces/mapInterface'
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {mapInterface} from 'interfaces/mapInterface';
 
 const initialState: mapInterface ={
-  mapName:""
+  mapName: '',
 };
 
 export const currentMapSlice = createSlice({
@@ -11,7 +11,7 @@ export const currentMapSlice = createSlice({
   reducers: {
     setMap: (state, action: PayloadAction<mapInterface>) => {
       state = action.payload;
-      return state
+      return state;
     },
     setMapWidthPX: (state, action: PayloadAction<number>) => {
       const newData = action.payload;
@@ -20,7 +20,6 @@ export const currentMapSlice = createSlice({
       }
     },
     setCellSquareSize: (state, action: PayloadAction<number>) => {
-
       state.cellSquareSize = Math.floor(action.payload);
     },
     setWidthInCells: (state, action: PayloadAction<number>) => {
@@ -45,7 +44,6 @@ export const {
   setWidthInCells,
   setHeightInCells,
 } = currentMapSlice.actions;
-
 
 
 export default currentMapSlice.reducer;

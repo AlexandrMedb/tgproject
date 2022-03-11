@@ -1,118 +1,117 @@
-import React, {} from "react";
-import styles from "./index.module.scss";
+import React, {} from 'react';
+import styles from './index.module.scss';
 
 
 import {
-    setMap,
-    setMapWidthPX,
-    setCellSquareSize,
-    setWidthInCells,
-    setHeightInCells,
-} from "features/currentMapSlice";
-import {useHttp} from "hooks/http.hook";
-import {RootState} from "store/store";
-import {connect} from "react-redux";
-import {mapInterface} from "interfaces/mapInterface";
-import {ImpButton} from "../../common/impButton/impButton";
+  setMap,
+  setMapWidthPX,
+  setCellSquareSize,
+  setWidthInCells,
+  setHeightInCells,
+} from 'features/currentMapSlice';
+import {useHttp} from 'hooks/http.hook';
+import {RootState} from 'store/store';
+import {connect} from 'react-redux';
+import {mapInterface} from 'interfaces/mapInterface';
+import {ImpButton} from '../../common/impButton/impButton';
 
 
 function mapStateToProps(state: RootState) {
-    const {user, currentMap, maps} = state
-    const {token} = user;
-    return {token,currentMap, maps}
+  const {user, currentMap, maps} = state;
+  const {token} = user;
+  return {token, currentMap, maps};
 }
 
 export const MapMenu = connect(mapStateToProps, {
-    setMap,
-    setMapWidthPX,
-    setCellSquareSize,
-    setWidthInCells,
-    setHeightInCells,
+  setMap,
+  setMapWidthPX,
+  setCellSquareSize,
+  setWidthInCells,
+  setHeightInCells,
 })(({
-        token, currentMap, setMap, maps,
-        setMapWidthPX,
-        setCellSquareSize,
-        setWidthInCells,
-        setHeightInCells,
-    }: any) => {
-    const {request, error} = useHttp();
+  token, currentMap, setMap, maps,
+  setMapWidthPX,
+  setCellSquareSize,
+  setWidthInCells,
+  setHeightInCells,
+}: any) => {
+  const {request, error} = useHttp();
 
-    const handleSubmit = async () => {
-        console.log(token)
-        const data = await request('/api/map/', 'POST', {
-            mapLink: currentMap.mapLink,
-            mapWidthPx: currentMap.mapWidthPx,
-            cellSquareSize: currentMap.cellSquareSize,
-            widthInCells: currentMap.widthInCells,
-            heightInCells: currentMap.heightInCells,
-        }, {
-            Authorization: `Bearer ${token}`
-        })
+  const handleSubmit = async () => {
+    console.log(token);
+    const data = await request('/api/map/', 'POST', {
+      mapLink: currentMap.mapLink,
+      mapWidthPx: currentMap.mapWidthPx,
+      cellSquareSize: currentMap.cellSquareSize,
+      widthInCells: currentMap.widthInCells,
+      heightInCells: currentMap.heightInCells,
+    }, {
+      Authorization: `Bearer ${token}`,
+    });
 
-        console.log(data, error)
-    }
+    console.log(data, error);
+  };
 
-const mapNameHandler = (mapName:string)=>{
-        return mapName.split('.').slice(0,-1).join(".")
-}
+  const mapNameHandler = (mapName:string)=>{
+    return mapName.split('.').slice(0, -1).join('.');
+  };
 
-    return (
-        <section className={styles.navBarContainer}>
-        <div className={styles.form}>
-            <div>
-                <label>Имя карты</label>
-                <input
-                    value={mapNameHandler(currentMap.mapName)}
-                    onChange={(e) => {
-                        setMap(e.target.value);
-                    }}
-                    type="text"
-                />
-            </div>
-
-                <label>Размер карты в px</label>
-                <input
-                    value={currentMap.mapWidthPx}
-                    onChange={(e) => setMapWidthPX(+e.target.value)}
-                    type="number"
-                />
-
-            <div>
-                <label >ширина карты в клетках</label>
-                <input
-                    value={currentMap.widthInCells}
-                    onChange={(e) => {
-                        setWidthInCells(+e.target.value);
-
-                    }}
-                    type="number"
-                />
-            </div>
-            <div>
-                <label>Высота карты в клетках</label>
-                <input
-                    value={currentMap.heightInCells}
-                    onChange={(e) => setHeightInCells(+e.target.value)}
-                    type="number"
-                />
-            </div>
-            <div>
-                <label>Размер клетки в PX</label>
-                <input
-                    value={currentMap.cellSquareSize}
-                    onChange={(e) => setCellSquareSize(+e.target.value)}
-                    type="number"
-                />
-            </div>
-            <ImpButton text={'Сохранить'} />
-            <div className={styles.mapSelector}>
-                {maps.map((el:mapInterface)=><div className={styles.mapItem}
-                                                  onClick={()=>setMap(el)}
-                                                  key={el.mapName}>{mapNameHandler(el.mapName)}</div>)}
-            </div>
-
-            <ImpButton text={'Создать карту'} />
+  return (
+    <section className={styles.navBarContainer}>
+      <div className={styles.form}>
+        <div>
+          <label>Имя карты</label>
+          <input
+            value={mapNameHandler(currentMap.mapName)}
+            onChange={(e) => {
+              setMap(e.target.value);
+            }}
+            type="text"
+          />
         </div>
-        </section>
-    );
+
+        <label>Размер карты в px</label>
+        <input
+          value={currentMap.mapWidthPx}
+          onChange={(e) => setMapWidthPX(+e.target.value)}
+          type="number"
+        />
+
+        <div>
+          <label >ширина карты в клетках</label>
+          <input
+            value={currentMap.widthInCells}
+            onChange={(e) => {
+              setWidthInCells(+e.target.value);
+            }}
+            type="number"
+          />
+        </div>
+        <div>
+          <label>Высота карты в клетках</label>
+          <input
+            value={currentMap.heightInCells}
+            onChange={(e) => setHeightInCells(+e.target.value)}
+            type="number"
+          />
+        </div>
+        <div>
+          <label>Размер клетки в PX</label>
+          <input
+            value={currentMap.cellSquareSize}
+            onChange={(e) => setCellSquareSize(+e.target.value)}
+            type="number"
+          />
+        </div>
+        <ImpButton text={'Сохранить'} />
+        <div className={styles.mapSelector}>
+          {maps.map((el:mapInterface)=><div className={styles.mapItem}
+            onClick={()=>setMap(el)}
+            key={el.mapName}>{mapNameHandler(el.mapName)}</div>)}
+        </div>
+
+        <ImpButton text={'Создать карту'} />
+      </div>
+    </section>
+  );
 });

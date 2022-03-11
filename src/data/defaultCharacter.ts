@@ -1,14 +1,14 @@
-import { characterInterface } from "interfaces/charactrInterface";
+import {characterInterface} from 'interfaces/charactrInterface';
 
 export const defaltCharacter: characterInterface = {
-  ownerId: "gm",
-  ownerName: "",
-  characterId: "13ads",
-  name: "vas",
-  class: "Paladin",
-  race: "Elf",
-  background: "Spy",
-  alignment: "True neutral",
+  ownerId: 'gm',
+  ownerName: '',
+  characterId: '13ads',
+  name: 'vas',
+  class: 'Paladin',
+  race: 'Elf',
+  background: 'Spy',
+  alignment: 'True neutral',
   experiencePoints: 0,
   lv: 1,
   hitPoints: 0,
@@ -29,75 +29,75 @@ export const defaltCharacter: characterInterface = {
   skils: {
     acrobatics: {
       isSet: false,
-      depence: "dexteruty",
+      depence: 'dexteruty',
     },
     animalHandling: {
       isSet: false,
-      depence: "wisdom",
+      depence: 'wisdom',
     },
     arcana: {
       isSet: false,
-      depence: "itellegence",
+      depence: 'itellegence',
     },
     athletics: {
       isSet: false,
-      depence: "strength",
+      depence: 'strength',
     },
     deception: {
       isSet: false,
-      depence: "charisma",
+      depence: 'charisma',
     },
     history: {
       isSet: false,
-      depence: "itellegence",
+      depence: 'itellegence',
     },
     insight: {
       isSet: false,
-      depence: "wisdom",
+      depence: 'wisdom',
     },
     intimidation: {
       isSet: false,
-      depence: "charisma",
+      depence: 'charisma',
     },
     investigation: {
       isSet: false,
-      depence: "itellegence",
+      depence: 'itellegence',
     },
     medicine: {
       isSet: false,
-      depence: "wisdom",
+      depence: 'wisdom',
     },
     nature: {
       isSet: false,
-      depence: "itellegence",
+      depence: 'itellegence',
     },
     perception: {
       isSet: false,
-      depence: "wisdom",
+      depence: 'wisdom',
     },
     performance: {
       isSet: false,
-      depence: "charisma",
+      depence: 'charisma',
     },
     persuasion: {
       isSet: false,
-      depence: "charisma",
+      depence: 'charisma',
     },
     religion: {
       isSet: false,
-      depence: "itellegence",
+      depence: 'itellegence',
     },
     sleightOfHand: {
       isSet: false,
-      depence: "dexteruty",
+      depence: 'dexteruty',
     },
     Stealth: {
       isSet: false,
-      depence: "dexteruty",
+      depence: 'dexteruty',
     },
     survival: {
       isSet: false,
-      depence: "wisdom",
+      depence: 'wisdom',
     },
   },
   savingThrowModifiers: {

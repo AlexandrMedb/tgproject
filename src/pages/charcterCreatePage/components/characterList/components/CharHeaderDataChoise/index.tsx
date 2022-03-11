@@ -1,11 +1,8 @@
+import React from "react";
+
 import styles from "./index.module.scss";
 
-export const CharHeaderDataChoise = ({
-  character,
-  setCharacter,
-  data,
-  datField,
-}) => {
+export const CharHeaderDataChoise = ({character, setCharacter, data, datField}:any) => {
   return (
     <div className={styles.charData}>
       <select
@@ -16,7 +13,7 @@ export const CharHeaderDataChoise = ({
         }}
         value={character[datField]}
       >
-        {data.map((e) => (
+        {data.map((e:any) => (
           <option key={e}>{e}</option>
         ))}
       </select>
