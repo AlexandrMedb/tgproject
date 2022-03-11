@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect} from "react";
-import styles from "./index.module.scss";
+import styles from "./mapPage.module.scss";
 //components
 import {MapField} from "components/mapPage/mapField/MapField";
 import {MapMenu} from 'components/mapPage/mapMenu/MapMenu';

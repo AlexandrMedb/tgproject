@@ -1,5 +1,5 @@
 import React,{ Dispatch, SetStateAction } from "react";
-// import styles from "./index.module.scss";
+// import styles from "./mapPage.module.scss";
 
 import { characterInterface } from "interfaces/charactrInterface";
 import { statNameType } from "interfaces/charactrInterface/types/otherTypes";

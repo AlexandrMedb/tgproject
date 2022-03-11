@@ -1,3 +1,37 @@
+@import "src/styles/colors";
+.navBarContainer{
+  padding: 10px;
+}
+
 .form {
-  background-color: lightblue;
+  background-color: $bgLighter;
+  padding: 15px;
+  border-radius: 5px;
+  color: $textColor;
+  label{
+    display: block;
+    margin-bottom: 0.3em;
+  }
+  input {
+    display: block;
+    margin-bottom: 0.7em;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px 5px;
+    border: none;
+  }
+
+  .mapItem{
+    margin: 10px 0;
+    border: 2px $mainColor dashed;
+    padding: 5px;
+    text-align: center;
+  }
+
+  //button{
+  //  bor;
+  //  color: $textColor;
+  //  background: $mainColor;
+  //  font-weight: bold;
+  //}
 }

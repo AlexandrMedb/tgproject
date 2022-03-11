@@ -8,7 +8,8 @@ export const mapsSlice = createSlice({
     initialState,
     reducers: {
         setMaps: (state, action: PayloadAction <Array <mapInterface>>) => {
-           state.push(...action.payload);
+           state=action.payload;
+           return state;
         },
     },
 });

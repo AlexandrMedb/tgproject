@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "./index.module.scss";
 
 import { InputFiled } from "../../components/common/inputField";
-import { ImpButton } from "../../components/common/impButton";
+import { ImpButton } from "../../components/common/impButton/impButton";
 import {useHttp} from "../../hooks/http.hook";
 import {RootState} from "../../store/store";
 import {connect} from "react-redux";

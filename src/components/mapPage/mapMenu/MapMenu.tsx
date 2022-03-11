@@ -1,8 +1,7 @@
-import React, {useCallback, useEffect} from "react";
+import React, {} from "react";
 import styles from "./index.module.scss";
 
 
-//slicer
 import {
     setMap,
     setMapWidthPX,
@@ -14,12 +13,12 @@ import {useHttp} from "hooks/http.hook";
 import {RootState} from "store/store";
 import {connect} from "react-redux";
 import {mapInterface} from "interfaces/mapInterface";
+import {ImpButton} from "../../common/impButton/impButton";
 
 
 function mapStateToProps(state: RootState) {
     const {user, currentMap, maps} = state
     const {token} = user;
-    console.log(user);
     return {token,currentMap, maps}
 }
 
@@ -53,64 +52,67 @@ export const MapMenu = connect(mapStateToProps, {
         console.log(data, error)
     }
 
-
+const mapNameHandler = (mapName:string)=>{
+        return mapName.split('.').slice(0,-1).join(".")
+}
 
     return (
+        <section className={styles.navBarContainer}>
         <div className={styles.form}>
             <div>
-                <p>Ссылка на карту</p>
+                <label>Имя карты</label>
                 <input
-                    value={currentMap.mapLink}
+                    value={mapNameHandler(currentMap.mapName)}
                     onChange={(e) => {
                         setMap(e.target.value);
                     }}
-                    name="mapLink"
                     type="text"
                 />
             </div>
-            <div>
-                <p>Размер карты в px</p>
+
+                <label>Размер карты в px</label>
                 <input
                     value={currentMap.mapWidthPx}
                     onChange={(e) => setMapWidthPX(+e.target.value)}
-                    name="mapLink"
                     type="number"
                 />
-            </div>
+
             <div>
-                <p>ширина карты в клетках</p>
+                <label >ширина карты в клетках</label>
                 <input
                     value={currentMap.widthInCells}
                     onChange={(e) => {
                         setWidthInCells(+e.target.value);
 
                     }}
-                    name="mapLink"
                     type="number"
                 />
             </div>
             <div>
-                <p>Высота карты в клетках</p>
+                <label>Высота карты в клетках</label>
                 <input
                     value={currentMap.heightInCells}
                     onChange={(e) => setHeightInCells(+e.target.value)}
-                    name="mapLink"
                     type="number"
                 />
             </div>
             <div>
-                <p>Размер клетки в PX</p>
+                <label>Размер клетки в PX</label>
                 <input
                     value={currentMap.cellSquareSize}
                     onChange={(e) => setCellSquareSize(+e.target.value)}
-                    name="mapLink"
                     type="number"
                 />
             </div>
-            <button type="button" onClick={handleSubmit}>
-                Сохранить
-            </button>
-            {maps.map((el:mapInterface)=><div onClick={()=>setMap(el)} key={el.mapName}>{el.mapName}</div>)}
+            <ImpButton text={'Сохранить'} />
+            <div className={styles.mapSelector}>
+                {maps.map((el:mapInterface)=><div className={styles.mapItem}
+                                                  onClick={()=>setMap(el)}
+                                                  key={el.mapName}>{mapNameHandler(el.mapName)}</div>)}
+            </div>
+
+            <ImpButton text={'Создать карту'} />
         </div>
+        </section>
     );
 });
