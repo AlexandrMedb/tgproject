@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import styles from './mapPage.module.scss';
 // components
 import {MapField} from 'components/mapPage/mapField/MapField';
@@ -6,9 +6,8 @@ import {MapMenu} from 'components/mapPage/mapMenu/MapMenu';
 import {CharTracker} from 'components/mapPage/charTracker/charTracker';
 import {MainNavBar} from 'components/common/mainNavBar/MainNavBar';
 import {connect} from 'react-redux';
-import {setMaps} from 'features/mapsSlice';
-import {useHttp} from 'hooks/http.hook';
 import {RootState} from 'store/store';
+import {useMapApi} from '../../hooks/mapApi.hook';
 
 function mapStateToProps(state: RootState) {
   const {user} = state;
@@ -17,25 +16,12 @@ function mapStateToProps(state: RootState) {
 }
 
 
-export const MapPage = connect(mapStateToProps, {setMaps})((props:any) => {
-  const {token, setMaps} =props;
-
-  const {request} =useHttp();
-
-  const fetchMaps = useCallback(async () => {
-    try {
-      const fetched = await request('/api/map', 'GET', null, {
-        Authorization: `Bearer ${token}`,
-      });
-      if (fetched) setMaps(fetched);
-    } catch (e) {
-      console.log(e);
-    }
-  }, [token, request]);
+export const MapPage = connect(mapStateToProps )(() => {
+  const {getMaps}= useMapApi();
 
   useEffect(() => {
-    fetchMaps();
-  }, [fetchMaps]);
+    getMaps();
+  } );
 
 
   return (
@@ -45,8 +31,7 @@ export const MapPage = connect(mapStateToProps, {setMaps})((props:any) => {
         <MapMenu/>
         <MapField/>
         <CharTracker/>
-
-        { /* <section>chat</section>*/}
+        {/* { /* <section>chat</section>*!/*/}
       </main>
     </div>
 

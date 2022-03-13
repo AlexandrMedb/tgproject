@@ -21,17 +21,64 @@
     border: none;
   }
 
+  input[type="file"] {
+    display: none;
+  }
+
+  .mapSelector{
+    padding: 20px 0 0px;
+  }
   .mapItem{
     margin: 10px 0;
     border: 2px $mainColor dashed;
     padding: 5px;
     text-align: center;
+    cursor: pointer;
+    transition: all 1s ease;
   }
 
-  //button{
-  //  bor;
-  //  color: $textColor;
-  //  background: $mainColor;
-  //  font-weight: bold;
-  //}
+  .mapItem:hover{
+    background: #565555;
+  }
+
+  button{
+    border: none;
+    ountline: none;
+    width: 100%;
+    padding: 10px;
+    border-radius: 2px;
+    background: $mainColor;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+
+  }
+  button:hover{
+    background: rgba(77, 208, 225, 0.8);
+  }
+}
+
+.modeSelector{
+  display: flex;
+  margin-bottom: 15px;
+  div{
+    width: 1.5em;
+    color: #4dd0e1;
+    background: $mainColor;
+    padding: 8px 6px 3px;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    height: 1.5em;
+  }
+  div:not(:first-of-type){
+    margin-left: 0.6em;
+  }
+  div:last-of-type{
+    margin-left: auto;
+  }
+  div:hover{
+    background: rgba(77, 208, 225, 0.8);
+  }
+  svg{width: 1.15em;fill: #454557D8;}
 }
