@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {useParams} from 'react-router-dom';
 import {useAppSelector, useAppDispatch} from 'store/hooks';
 import {selectCurentCharacter} from 'features/curentCharapterSlice';
 
@@ -7,15 +6,6 @@ import {CharacterList} from './components/characterList';
 
 import styles from './index.module.scss';
 
-import {
-  getDatabase,
-  ref,
-  update,
-  set,
-  get,
-  push,
-  onValue,
-} from 'firebase/database';
 export const CharacterCreatePage = () => {
   const dispatch = useAppDispatch();
 
@@ -130,22 +120,6 @@ export const CharacterCreatePage = () => {
     },
   });
 
-  const db = getDatabase();
-
-  const {chatId} = useParams<{ chatId?: string }>();
-
-  let data = {};
-  const starCountRef = ref(db, `profile/${chatId}/characters`);
-  onValue(starCountRef, (snapshot) => {
-    if (snapshot.val()) {
-      data = snapshot.val();
-      const newKeys = Object.keys(data);
-      const currentKeys = Object.keys(characterList);
-      if (newKeys.length !== currentKeys.length) {
-        setCharacterList(data);
-      }
-    }
-  });
 
   return (
     <main className={styles.wrapper}>

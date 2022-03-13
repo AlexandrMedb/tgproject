@@ -23,5 +23,6 @@ module.exports = {
     'require-jsdoc': 0,
     'no-unused-vars': 'warn',
     '@typescript-eslint/no-unused-vars': ['warn'],
+    'linebreak-style': 0,
   },
 };
